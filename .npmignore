@@ -1,0 +1,36 @@
+# Source & demo app — excluded from the npm package
+src/
+public/
+index.html
+
+# Vite / demo build configs
+vite.config.ts
+tailwind.config.ts
+tailwind.lib.config.ts
+postcss.config.js
+components.json
+
+# TypeScript project configs
+tsconfig.json
+tsconfig.app.json
+tsconfig.node.json
+
+# Testing
+vitest.config.ts
+playwright.config.ts
+playwright-fixture.ts
+
+# CI / tooling
+.github/
+eslint.config.js
+release.config.cjs
+
+# Lock files (consumers use their own)
+bun.lock
+bun.lockb
+pnpm-lock.yaml
+package-lock.json
+
+# Misc
+node_modules/
+*.log

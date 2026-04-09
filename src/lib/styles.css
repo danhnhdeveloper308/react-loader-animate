@@ -1,0 +1,29 @@
+/*
+ * react-loader-animate — Library CSS
+ *
+ * Import this file in your project to get the default color tokens
+ * and all Tailwind utility classes required by the loader components:
+ *
+ *   import 'react-loader-animate/style.css';
+ *
+ * If you already use Tailwind CSS, use the Tailwind preset instead:
+ *   presets: [require('react-loader-animate/tailwind.preset')]
+ */
+
+@tailwind base;
+
+/* Default color tokens — override in your own :root if desired */
+@layer base {
+  :root {
+    --primary: 260 100% 80%;
+    --primary-foreground: 240 10% 3.9%;
+    --accent: 12 76% 61%;
+    --accent-foreground: 0 0% 98%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 98%;
+  }
+}
+
+@tailwind utilities;
