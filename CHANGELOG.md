@@ -1,3 +1,5 @@
+## [1.0.2](https://github.com/danhnhdeveloper308/react-loader-animate/compare/v1.0.1...v1.0.2) (2026-04-10)
+
 ## 1.0.0 (2026-04-10)
 
 ### Bug Fixes
