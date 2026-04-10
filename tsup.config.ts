@@ -8,7 +8,7 @@ export default defineConfig({
   external: ['react', 'react-dom', 'react/jsx-runtime'],
   splitting: false,
   sourcemap: false,
-  minify: false,
+  minify: true,
   treeshake: true,
   outDir: 'dist',
   target: 'es2020',

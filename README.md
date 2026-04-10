@@ -1,55 +1,57 @@
 # react-loader-animate
 
-Bộ sưu tập **41+ loading components** được xây dựng bằng React, TypeScript và Tailwind CSS — sẵn sàng publish lên npm.
+> A collection of **52+ animated loading components** built with React, TypeScript, and Tailwind CSS — lightweight, tree-shakable, and fully customizable.
 
-![npm](https://img.shields.io/npm/v/react-loader-animate?color=CB3837&logo=npm)
-![React](https://img.shields.io/badge/React-≥16.8-61DAFB?logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?logo=tailwindcss)
+[![npm version](https://img.shields.io/npm/v/react-loader-animate?color=CB3837&logo=npm&label=npm)](https://www.npmjs.com/package/react-loader-animate)
+[![npm downloads](https://img.shields.io/npm/dm/react-loader-animate?color=CB3837&logo=npm)](https://www.npmjs.com/package/react-loader-animate)
+[![React](https://img.shields.io/badge/React-≥17-61DAFB?logo=react&logoColor=61DAFB)](https://reactjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)](https://www.typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?logo=tailwindcss)](https://tailwindcss.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## ✨ Tính năng
+---
 
-- 🎨 **41+ loader animations** với nhiều kiểu dáng khác nhau
-- 📐 **3 kích thước**: `sm`, `md`, `lg`
-- 🎭 **4 biến thể màu**: `primary`, `accent`, `success`, `warning`
-- ⚡ **Tối ưu hiệu suất**: `React.memo`, Intersection Observer lazy-load
-- 🧩 **Barrel exports** — import gọn gàng từ một package duy nhất
-- 🌗 Hỗ trợ **dark mode** qua CSS custom properties
-- 🔧 **TypeScript** first — đầy đủ type definitions
+## ✨ Features
 
-## 📦 Cài đặt
+- 🎨 **52+ loader animations** — spin, pulse, wave, orbit, DNA, hourglass, and more
+- 📐 **3 built-in sizes** — `sm`, `md`, `lg`
+- 🎭 **4 colour variants** — `primary`, `accent`, `success`, `warning`
+- 🖌️ **Full customisation** — `color`, `height`, `width`, `animationDuration`, `strokeWidth`, `colors[]`
+- ♿ **Accessible** — `role="status"`, `aria-label`, `visible` prop for screen-reader-friendly hiding
+- ⚡ **Performance-first** — every component wrapped in `React.memo`, zero runtime dependencies
+- 🌗 **Dark mode** — CSS custom properties, works with any theming strategy
+- 🌲 **Tree-shakable** — import only what you use; unused loaders are eliminated at build time
+- 🔧 **TypeScript** — complete type definitions included
+
+---
+
+## 📦 Installation
 
 ```bash
+# npm
 npm install react-loader-animate
-# hoặc
+
+# pnpm
 pnpm add react-loader-animate
-# hoặc
+
+# yarn
 yarn add react-loader-animate
 ```
 
-## 🚀 Cách sử dụng
+**Peer dependencies:** `react >= 17`, `react-dom >= 17`
 
-### 1. Import CSS (bắt buộc cho non-Tailwind project)
+---
 
-```tsx
-// Thêm vào file entry (main.tsx / _app.tsx)
-import 'react-loader-animate/style.css';
-```
+## 🚀 Quick Start
 
-### 2. Sử dụng component
+### Option 1 — Pre-built CSS
 
 ```tsx
-import { SpinLoader, DotsLoader, WaveLoader } from 'react-loader-animate';
-
-// Kích thước mặc định (md), màu mặc định (primary)
-<SpinLoader />
-
-// Tuỳ chỉnh kích thước và màu
-<DotsLoader size="lg" variant="accent" />
-<WaveLoader size="sm" variant="success" />
+// main.tsx / _app.tsx
+import 'react-loader-animate/dist/index.css';
 ```
 
-### 3. Tailwind CSS project (tùy chọn thay thế cho CSS import)
+### Option 2 — Tailwind CSS preset (recommended)
 
 ```ts
 // tailwind.config.ts
@@ -59,106 +61,128 @@ export default {
   presets: [loaderPreset],
   content: [
     './src/**/*.{ts,tsx}',
-    'node_modules/react-loader-animate/dist/**/*.{js,cjs}',
+    'node_modules/react-loader-animate/dist/**/*.{js,mjs}',
   ],
 };
 ```
 
-## 📐 Props
+### Use a component
 
-```ts
-interface LoaderProps {
-  size?:    'sm' | 'md' | 'lg';                           // default: 'md'
-  variant?: 'primary' | 'accent' | 'success' | 'warning'; // default: 'primary'
+```tsx
+import { SpinLoader, DotsLoader, GradientSpinner } from 'react-loader-animate';
+
+export default function App() {
+  return (
+    <div>
+      <SpinLoader />
+      <SpinLoader size="lg" variant="accent" />
+      <SpinLoader color="#6366f1" animationDuration={0.6} />
+    </div>
+  );
 }
 ```
 
+---
 
-## 📦 Danh sách Loaders
+## 🎛️ Props
 
-### Basic Loaders
+All components share a common `LoaderProps` interface:
 
-| Loader | Mô tả |
-|--------|--------|
-| `SpinLoader` | Vòng xoay cơ bản |
-| `DotsLoader` | 3 chấm nhảy lên xuống |
-| `PulseLoader` | Hiệu ứng nhịp đập |
-| `WaveLoader` | Sóng chuyển động |
-| `GradientSpinner` | Vòng xoay gradient |
-| `RingLoader` | Vòng tròn xoay kép |
-| `BarLoader` | Thanh trượt ngang |
-| `TypingDotsLoader` | 3 chấm gõ chữ |
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Preset size |
+| `variant` | `'primary' \| 'accent' \| 'success' \| 'warning'` | `'primary'` | Colour theme token |
+| `color` | `string` | — | Custom CSS colour (overrides `variant`) |
+| `height` | `number \| string` | — | Custom height in px or CSS string |
+| `width` | `number \| string` | — | Custom width in px or CSS string |
+| `className` | `string` | — | Extra class(es) on the root element |
+| `ariaLabel` | `string` | `'loading'` | Accessible label for screen readers |
+| `wrapperStyle` | `CSSProperties` | — | Inline styles on the wrapper |
+| `wrapperClass` | `string` | — | Extra class(es) on the wrapper |
+| `visible` | `boolean` | `true` | Set to `false` to hide (returns `null`) |
+| `strokeWidth` | `number` | `4` | SVG stroke width (SVG-based loaders) |
+| `animationDuration` | `number` | `1` | Animation speed in seconds |
+| `colors` | `string[]` | — | Custom colour array (e.g. `ColorRingLoader`) |
 
-### Shape Loaders
+---
 
-| Loader | Mô tả |
-|--------|--------|
-| `SquareLoader` | Hình vuông biến đổi |
-| `TriangleLoader` | Tam giác xoay |
-| `DiamondLoader` | Hình thoi xoay |
-| `CrossLoader` | Dấu cộng xoay |
-| `HexagonLoader` | Lục giác xoay |
-| `PentagonLoader` | Ngũ giác xoay |
-| `StarLoader` | Ngôi sao xoay |
-| `ArrowLoader` | Mũi tên xoay |
-| `ChevronLoader` | Chevron chuyển động |
-| `PyramidLoader` | Kim tự tháp 3D |
-| `CubeLoader` | Khối lập phương 3D |
+## 🧩 Component Catalogue
 
-### Motion Loaders
+### Basic & Spinner
+`SpinLoader` · `DotsLoader` · `PulseLoader` · `WaveLoader` · `GradientSpinner` · `RingLoader` · `BarLoader` · `TypingDotsLoader` · `SyncLoader` · `BarsLoader` · `RotatingLoader`
 
-| Loader | Mô tả |
-|--------|--------|
-| `FlipLoader` | Lật 3D |
-| `OrbitLoader` | Quỹ đạo xoay |
-| `ButterflyLoader` | Cánh bướm vỗ |
-| `SegmentLoader` | Phân đoạn xoay |
-| `SpiralLoader` | Xoắn ốc |
-| `GridLoader` | Lưới nhấp nháy |
-| `BounceBallLoader` | Bóng nảy |
-| `ClockLoader` | Kim đồng hồ |
-| `DNALoader` | Chuỗi DNA xoắn |
-| `HeartbeatLoader` | Nhịp tim |
-| `InfinityLoader` | Vô cực ∞ |
-| `GearLoader` | Bánh răng quay |
-| `HourglassLoader` | Đồng hồ cát |
-| `RadarLoader` | Radar quét |
-| `PendulumLoader` | Con lắc Newton |
-| `AtomLoader` | Nguyên tử với electron |
-| `CornerSquaresLoader` | 4 ô vuông góc |
+### Shapes
+`SquareLoader` · `TriangleLoader` · `DiamondLoader` · `CrossLoader` · `HexagonLoader` · `PentagonLoader` · `StarLoader` · `ArrowLoader` · `ChevronLoader` · `PyramidLoader` · `CubeLoader`
 
-### Split & Transform Loaders
+### Motion & Physics
+`FlipLoader` · `OrbitLoader` · `ButterflyLoader` · `SegmentLoader` · `SpiralLoader` · `GridLoader` · `Grid3x3Loader` · `BounceBallLoader` · `ClockLoader` · `DNALoader` · `HeartbeatLoader` · `InfinityLoader` · `GearLoader` · `HourglassLoader` · `RadarLoader` · `PendulumLoader` · `AtomLoader`
 
-| Loader | Mô tả |
-|--------|--------|
-| `SquareSplitLoader` | Vuông tách & gộp |
-| `TriangleSplitLoader` | Tam giác tách & gộp |
-| `CircleSplitLoader` | Tròn tách & gộp |
-| `DiamondSplitLoader` | Thoi tách & gộp |
-| `HexagonSplitLoader` | Lục giác tách & gộp |
+### Advanced / Multi-colour
+`ColorRingLoader` · `CircularProgressLoader` · `TailSpinLoader` · `BallTriangleLoader` · `HashLoader` · `MutatingDotsLoader` · `ThreeDotsFadeLoader`
 
-## ⚙️ Props
+### Split & Transform
+`CornerSquaresLoader` · `SquareSplitLoader` · `TriangleSplitLoader` · `CircleSplitLoader` · `DiamondSplitLoader` · `HexagonSplitLoader`
 
-```typescript
-interface LoaderProps {
-  size?: 'sm' | 'md' | 'lg';       // Mặc định: 'md'
-  variant?: 'primary' | 'accent' | 'success' | 'warning'; // Mặc định: 'primary'
+---
+
+## 💡 Usage Examples
+
+```tsx
+// Custom colour
+<SpinLoader color="#f43f5e" size="lg" />
+
+// Custom size override
+<RingLoader height={80} width={80} strokeWidth={6} />
+
+// Controlled visibility
+<DotsLoader visible={isLoading} />
+
+// Multi-colour ring
+<ColorRingLoader colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']} />
+
+// Slow down animation
+<PulseLoader animationDuration={2} variant="success" />
+
+// Wrapper customisation
+<SpinLoader wrapperClass="flex items-center justify-center" wrapperStyle={{ minHeight: 200 }} />
+```
+
+---
+
+## 🌗 Dark Mode
+
+The library uses [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) for colour tokens. Add the following variables to your global CSS:
+
+```css
+:root {
+  --primary:   262 80% 60%;
+  --accent:    25 95% 53%;
+  --success:   142 71% 45%;
+  --warning:   38 92% 50%;
+}
+
+.dark {
+  --primary:   262 80% 65%;
+  --accent:    25 95% 58%;
+  --success:   142 71% 50%;
+  --warning:   38 92% 55%;
 }
 ```
 
-| Prop | Giá trị | Kích thước |
-|------|---------|------------|
-| `sm` | `w-8 h-8` | 32px |
-| `md` | `w-12 h-12` | 48px |
-| `lg` | `w-16 h-16` | 64px |
+---
 
-## 🛠️ Tech Stack
+## 📖 Documentation
 
-- **React 18** + **TypeScript 5**
-- **Tailwind CSS v3** — utility-first styling
-- **Vite 5** — bundler
-- **Intersection Observer** — lazy loading sections
+Live demo and full API reference: **[react-loader-animate docs](https://danhnhdeveloper308.github.io/react-loader-animate/)**
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Please open an issue or submit a pull request on [GitHub](https://github.com/danhnhdeveloper308/react-loader-animate).
+
+---
 
 ## 📄 License
 
-MIT
+MIT © [danhnhdeveloper308](https://github.com/danhnhdeveloper308)

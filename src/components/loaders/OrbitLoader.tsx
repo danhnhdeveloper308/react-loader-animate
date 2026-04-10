@@ -7,12 +7,18 @@ const DOT_SIZES = {
   lg: 'w-4 h-4'
 } as const;
 
-export const OrbitLoader = memo(({ size = 'md', variant = 'primary' }: LoaderProps) => {
+export const OrbitLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+  if (!visible) return null;
   const dot = DOT_SIZES[size];
   const bg = LOADER_BG_VARIANTS[variant];
 
   return (
-    <div className={`${LOADER_SIZES[size]} relative animate-spin`}>
+    <div
+      role="status"
+      aria-label={ariaLabel}
+      className={`${LOADER_SIZES[size]} relative animate-spin ${wrapperClass}`}
+      style={wrapperStyle}
+    >
       <div className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 ${dot} rounded-full ${bg}`} />
       <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 ${dot} rounded-full ${bg} opacity-50`} />
       <div className={`absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 ${dot} rounded-full ${bg} opacity-75`} />

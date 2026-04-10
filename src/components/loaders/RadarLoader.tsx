@@ -1,7 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps, LOADER_SIZES } from './types';
 
-export const RadarLoader = memo(({ size = 'md', variant = 'primary' }: LoaderProps) => {
+export const RadarLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+  if (!visible) return null;
   const colors = {
     primary: 'border-primary',
     accent: 'border-accent',
@@ -15,7 +16,12 @@ export const RadarLoader = memo(({ size = 'md', variant = 'primary' }: LoaderPro
     warning: 'bg-warning',
   };
   return (
-    <div className={`${LOADER_SIZES[size]} relative`}>
+    <div
+      role="status"
+      aria-label={ariaLabel}
+      className={`${LOADER_SIZES[size]} relative ${wrapperClass}`}
+      style={wrapperStyle}
+    >
       {/* Concentric rings */}
       {[100, 70, 40].map((pct, i) => (
         <div
@@ -48,4 +54,5 @@ export const RadarLoader = memo(({ size = 'md', variant = 'primary' }: LoaderPro
     </div>
   );
 });
+
 RadarLoader.displayName = 'RadarLoader';

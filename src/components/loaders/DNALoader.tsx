@@ -1,22 +1,36 @@
 import { memo } from 'react';
-import { LoaderProps, LOADER_BG_VARIANTS } from './types';
+import { LoaderProps, resolveColor } from './types';
 
-const SIZE_MAP = { sm: 'w-8 h-8', md: 'w-12 h-12', lg: 'w-16 h-16' };
+const CONFIGS = {
+  sm: { columns: 4, dotPx: 3,  linePx: 8,  gapPx: 2 },
+  md: { columns: 5, dotPx: 5,  linePx: 12, gapPx: 3 },
+  lg: { columns: 6, dotPx: 8,  linePx: 18, gapPx: 4 },
+};
 
-export const DNALoader = memo(({ size = 'md', variant = 'primary' }: LoaderProps) => {
-  const bg = LOADER_BG_VARIANTS[variant];
+export const DNALoader = memo(({
+  size = 'md', variant = 'primary', color, visible = true,
+  ariaLabel = 'dna-loading', wrapperStyle, wrapperClass = '',
+}: LoaderProps) => {
+  if (!visible) return null;
+  const { columns, dotPx, linePx, gapPx } = CONFIGS[size];
+  const c = resolveColor(variant, color);
   return (
-    <div className={`${SIZE_MAP[size]} flex items-center justify-center gap-[3px]`}>
-      {Array.from({ length: 5 }).map((_, i) => (
-        <div key={i} className="flex flex-col items-center gap-[2px]">
+    <div
+      role="status"
+      aria-label={ariaLabel}
+      className={wrapperClass}
+      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: gapPx, ...wrapperStyle }}
+    >
+      {Array.from({ length: columns }).map((_, i) => (
+        <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: gapPx }}>
           <div
-            className={`w-[5px] h-[5px] ${bg} rounded-full animate-dna-top`}
-            style={{ animationDelay: `${i * 0.15}s` }}
+            className="animate-dna-top"
+            style={{ width: dotPx, height: dotPx, borderRadius: '50%', backgroundColor: c, animationDelay: `${i * 0.15}s` }}
           />
-          <div className={`w-[1px] h-3 ${bg} opacity-30`} />
+          <div style={{ width: 1, height: linePx, backgroundColor: c, opacity: 0.3 }} />
           <div
-            className={`w-[5px] h-[5px] ${bg} rounded-full animate-dna-bottom`}
-            style={{ animationDelay: `${i * 0.15}s` }}
+            className="animate-dna-bottom"
+            style={{ width: dotPx, height: dotPx, borderRadius: '50%', backgroundColor: c, animationDelay: `${i * 0.15}s` }}
           />
         </div>
       ))}

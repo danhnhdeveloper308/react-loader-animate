@@ -192,6 +192,10 @@ export default {
           '75%': { transform: 'rotate(30deg)' },
           '100%': { transform: 'rotate(0deg)' },
         },
+        bars: {
+          '0%, 40%, 100%': { transform: 'scaleY(0.4)' },
+          '20%': { transform: 'scaleY(1)' },
+        },
       },
       animation: {
         'spin-slow': 'spin-slow 2s linear infinite',
@@ -221,6 +225,7 @@ export default {
         'typing-bounce': 'typing-bounce 1.4s ease-in-out infinite',
         'pendulum-left': 'pendulum-left 1s ease-in-out infinite',
         'pendulum-right': 'pendulum-right 1s ease-in-out infinite',
+        bars: 'bars 1.2s ease-in-out infinite',
       },
     },
   },

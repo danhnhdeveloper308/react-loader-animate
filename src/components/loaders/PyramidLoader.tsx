@@ -3,7 +3,8 @@ import { LoaderProps } from './types';
 
 const SIZE_MAP = { sm: 'w-8 h-8', md: 'w-12 h-12', lg: 'w-16 h-16' };
 
-export const PyramidLoader = memo(({ size = 'md', variant = 'primary' }: LoaderProps) => {
+export const PyramidLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+  if (!visible) return null;
   const stroke = {
     primary: 'stroke-primary',
     accent: 'stroke-accent',
@@ -17,11 +18,14 @@ export const PyramidLoader = memo(({ size = 'md', variant = 'primary' }: LoaderP
     warning: 'fill-warning/20',
   };
   return (
-    <svg className={`${SIZE_MAP[size]} animate-swing`} viewBox="0 0 50 50">
-      <polygon className={`${stroke[variant]} ${fill[variant]}`} points="25,5 5,45 45,45" strokeWidth="2" />
-      <line className={stroke[variant]} x1="25" y1="5" x2="25" y2="45" strokeWidth="1" opacity="0.4" />
-      <line className={stroke[variant]} x1="15" y1="25" x2="35" y2="25" strokeWidth="1" opacity="0.4" />
-    </svg>
+    <div role="status" aria-label={ariaLabel} className={wrapperClass} style={{ display: 'inline-flex', ...wrapperStyle }}>
+      <svg className={`${SIZE_MAP[size]} animate-swing`} viewBox="0 0 50 50">
+        <polygon className={`${stroke[variant]} ${fill[variant]}`} points="25,5 5,45 45,45" strokeWidth="2" />
+        <line className={stroke[variant]} x1="25" y1="5" x2="25" y2="45" strokeWidth="1" opacity="0.4" />
+        <line className={stroke[variant]} x1="15" y1="25" x2="35" y2="25" strokeWidth="1" opacity="0.4" />
+      </svg>
+    </div>
   );
 });
+
 PyramidLoader.displayName = 'PyramidLoader';

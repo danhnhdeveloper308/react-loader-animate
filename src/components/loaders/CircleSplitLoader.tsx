@@ -8,10 +8,16 @@ const PIECES = [
   { x: '-55%', y: '0%', delay: '1.2s' },
 ] as const;
 
-export const CircleSplitLoader = memo(({ size = 'md', variant = 'primary' }: LoaderProps) => {
+export const CircleSplitLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+  if (!visible) return null;
   const bg = LOADER_BG_VARIANTS[variant];
   return (
-    <div className={`${LOADER_SIZES[size]} relative`}>
+    <div
+      role="status"
+      aria-label={ariaLabel}
+      className={`${LOADER_SIZES[size]} relative ${wrapperClass}`}
+      style={wrapperStyle}
+    >
       {/* Ghost */}
       <div className={`absolute inset-[10%] ${bg} rounded-full opacity-15`} />
       {PIECES.map((piece, i) => (

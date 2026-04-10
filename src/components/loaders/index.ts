@@ -41,5 +41,20 @@ export { TypingDotsLoader } from './TypingDotsLoader';
 export { PendulumLoader } from './PendulumLoader';
 export { AtomLoader } from './AtomLoader';
 
+// ── New loaders v2 ────────────────────────────────────────────────────────────
+export { ColorRingLoader } from './ColorRingLoader';
+export { CircularProgressLoader } from './CircularProgressLoader';
+export { TailSpinLoader } from './TailSpinLoader';
+export { BallTriangleLoader } from './BallTriangleLoader';
+export { HashLoader } from './HashLoader';
+export { SyncLoader } from './SyncLoader';
+export { MutatingDotsLoader } from './MutatingDotsLoader';
+export { ThreeDotsFadeLoader } from './ThreeDotsFadeLoader';
+
+// ── New loaders v3 ────────────────────────────────────────────────────────────
+export { Grid3x3Loader } from './Grid3x3Loader';
+export { BarsLoader } from './BarsLoader';
+export { RotatingLoader } from './RotatingLoader';
+
 export type { LoaderProps } from './types';
-export { LOADER_SIZES, LOADER_BG_VARIANTS, LOADER_BORDER_VARIANTS } from './types';
+export { LOADER_SIZES, LOADER_BG_VARIANTS, LOADER_BORDER_VARIANTS, resolveColor, resolveSizeClass } from './types';

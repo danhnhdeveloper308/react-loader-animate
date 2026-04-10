@@ -1,7 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps, LOADER_SIZES, LOADER_BORDER_VARIANTS } from './types';
 
-export const ClockLoader = memo(({ size = 'md', variant = 'primary' }: LoaderProps) => {
+export const ClockLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+  if (!visible) return null;
   const bg = {
     primary: 'bg-primary',
     accent: 'bg-accent',
@@ -9,7 +10,12 @@ export const ClockLoader = memo(({ size = 'md', variant = 'primary' }: LoaderPro
     warning: 'bg-warning',
   };
   return (
-    <div className={`${LOADER_SIZES[size]} relative rounded-full border-2 ${LOADER_BORDER_VARIANTS[variant]}`}>
+    <div
+      role="status"
+      aria-label={ariaLabel}
+      className={`${LOADER_SIZES[size]} relative rounded-full border-2 ${LOADER_BORDER_VARIANTS[variant]} ${wrapperClass}`}
+      style={wrapperStyle}
+    >
       {/* Hour hand */}
       <div
         className={`absolute w-[3px] h-[30%] ${bg[variant]} rounded-full animate-spin-slow origin-bottom`}
@@ -25,4 +31,5 @@ export const ClockLoader = memo(({ size = 'md', variant = 'primary' }: LoaderPro
     </div>
   );
 });
+
 ClockLoader.displayName = 'ClockLoader';

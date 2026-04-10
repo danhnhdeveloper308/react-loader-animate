@@ -10,10 +10,16 @@ const PIECES = [
   { x: '-55%', y: '0%', delay: '1.2s' },
 ] as const;
 
-export const DiamondSplitLoader = memo(({ size = 'md', variant = 'primary' }: LoaderProps) => {
+export const DiamondSplitLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+  if (!visible) return null;
   const bg = LOADER_BG_VARIANTS[variant];
   return (
-    <div className={`${LOADER_SIZES[size]} relative`}>
+    <div
+      role="status"
+      aria-label={ariaLabel}
+      className={`${LOADER_SIZES[size]} relative ${wrapperClass}`}
+      style={wrapperStyle}
+    >
       {/* Ghost */}
       <div className={`absolute inset-[5%] ${bg} opacity-15`} style={{ clipPath: DIAMOND_CLIP }} />
       {PIECES.map((piece, i) => (

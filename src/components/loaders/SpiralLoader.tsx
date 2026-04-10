@@ -22,12 +22,20 @@ const BORDER_B_VARIANTS = {
   warning: 'border-b-warning'
 } as const;
 
-export const SpiralLoader = memo(({ size = 'md', variant = 'primary' }: LoaderProps) => (
-  <div className={`${LOADER_SIZES[size]} relative animate-spin`}>
-    <div className={`absolute inset-0 rounded-full border-4 border-transparent ${BORDER_VARIANTS[variant]}`} />
-    <div className={`absolute inset-1 rounded-full border-4 border-transparent ${BORDER_R_VARIANTS[variant]}`} />
-    <div className={`absolute inset-2 rounded-full border-4 border-transparent ${BORDER_B_VARIANTS[variant]}`} />
-  </div>
-));
+export const SpiralLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+  if (!visible) return null;
+  return (
+    <div
+      role="status"
+      aria-label={ariaLabel}
+      className={`${LOADER_SIZES[size]} relative animate-spin ${wrapperClass}`}
+      style={wrapperStyle}
+    >
+      <div className={`absolute inset-0 rounded-full border-4 border-transparent ${BORDER_VARIANTS[variant]}`} />
+      <div className={`absolute inset-1 rounded-full border-4 border-transparent ${BORDER_R_VARIANTS[variant]}`} />
+      <div className={`absolute inset-2 rounded-full border-4 border-transparent ${BORDER_B_VARIANTS[variant]}`} />
+    </div>
+  );
+});
 
 SpiralLoader.displayName = 'SpiralLoader';

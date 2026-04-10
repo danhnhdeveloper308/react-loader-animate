@@ -1,20 +1,43 @@
 import { memo } from 'react';
-import { LoaderProps, LOADER_SIZES } from './types';
+import { LoaderProps, resolveColor, resolveSizeClass } from './types';
 
-export const SpinLoader = memo(({ size = 'md', variant = 'primary' }: LoaderProps) => {
-  const variantClasses = {
-    primary: 'border-primary border-t-transparent',
-    accent: 'border-accent border-t-transparent',
-    success: 'border-success border-t-transparent',
-    warning: 'border-warning border-t-transparent'
-  };
+export const SpinLoader = memo(({
+  size = 'md',
+  variant = 'primary',
+  color,
+  className = '',
+  height,
+  width,
+  ariaLabel = 'Loading',
+  wrapperStyle,
+  wrapperClass = '',
+  visible = true,
+  strokeWidth = 4,
+  animationDuration = 0.7,
+}: LoaderProps) => {
+  if (!visible) return null;
+
+  const c = resolveColor(variant, color);
+  const { sizeClass, sizeStyle } = resolveSizeClass(size, height, width);
 
   return (
-    <div className={`
-      ${LOADER_SIZES[size]} 
-      border-4 rounded-full animate-spin
-      ${variantClasses[variant]}
-    `} />
+    <div
+      role="status"
+      aria-label={ariaLabel}
+      className={wrapperClass}
+      style={wrapperStyle}
+    >
+      <div
+        className={`${sizeClass} rounded-full ${className}`}
+        style={{
+          ...sizeStyle,
+          border: `${strokeWidth}px solid ${c}`,
+          borderTopColor: 'transparent',
+          animation: `spin ${animationDuration}s linear infinite`,
+        }}
+      />
+      <span className="sr-only">{ariaLabel}</span>
+    </div>
   );
 });
 

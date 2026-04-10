@@ -1,21 +1,44 @@
 import { memo } from 'react';
-import { LoaderProps, LOADER_SIZES } from './types';
+import { LoaderProps, resolveColor, resolveSizeClass } from './types';
 
-const GRADIENT_VARIANTS = {
-  primary: 'bg-gradient-primary',
-  accent: 'bg-gradient-accent',
-  success: 'bg-gradient-success',
-  warning: 'bg-gradient-warning'
-} as const;
+export const GradientSpinner = memo(({
+  size = 'md',
+  variant = 'primary',
+  color,
+  className = '',
+  height,
+  width,
+  ariaLabel = 'Loading',
+  wrapperStyle,
+  wrapperClass = '',
+  visible = true,
+  animationDuration = 1,
+}: LoaderProps) => {
+  if (!visible) return null;
 
-export const GradientSpinner = memo(({ size = 'md', variant = 'primary' }: LoaderProps) => (
-  <div className={`${LOADER_SIZES[size]} animate-spin-slow relative`}>
-    <div className={`absolute inset-0 rounded-full ${GRADIENT_VARIANTS[variant]}`} />
-    <div className="absolute inset-[3px] bg-background rounded-full" />
+  const c = resolveColor(variant, color);
+  const { sizeClass, sizeStyle } = resolveSizeClass(size, height, width);
+
+  return (
     <div
-      className={`absolute w-[6px] h-[6px] rounded-full top-0 left-1/2 -translate-x-1/2 ${GRADIENT_VARIANTS[variant]}`}
-    />
-  </div>
-));
+      role="status"
+      aria-label={ariaLabel}
+      className={wrapperClass}
+      style={wrapperStyle}
+    >
+      <div
+        className={`${sizeClass} rounded-full ${className}`}
+        style={{
+          ...sizeStyle,
+          background: `conic-gradient(transparent 30%, ${c})`,
+          WebkitMask: 'radial-gradient(farthest-side, transparent calc(100% - 4px), #fff calc(100% - 3px))',
+          mask: 'radial-gradient(farthest-side, transparent calc(100% - 4px), #fff calc(100% - 3px))',
+          animation: `spin ${animationDuration}s linear infinite`,
+        }}
+      />
+      <span className="sr-only">{ariaLabel}</span>
+    </div>
+  );
+});
 
 GradientSpinner.displayName = 'GradientSpinner';

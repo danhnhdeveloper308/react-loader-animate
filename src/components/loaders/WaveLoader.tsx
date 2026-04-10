@@ -1,22 +1,47 @@
 import { memo } from 'react';
-import { LoaderProps, LOADER_BG_VARIANTS } from './types';
+import { LoaderProps, resolveColor } from './types';
 
-const BAR_SIZES = {
-  sm: 'w-1 h-4',
-  md: 'w-1.5 h-6',
-  lg: 'w-2 h-8'
-} as const;
+const BAR_SIZES = { sm: { w: 4, h: 16 }, md: { w: 6, h: 24 }, lg: { w: 8, h: 32 } } as const;
 
-export const WaveLoader = memo(({ size = 'md', variant = 'primary' }: LoaderProps) => (
-  <div className="flex items-end space-x-1">
-    {[0, 1, 2, 3, 4].map((index) => (
-      <div
-        key={index}
-        className={`${BAR_SIZES[size]} rounded-sm animate-wave ${LOADER_BG_VARIANTS[variant]}`}
-        style={{ animationDelay: `${index * 0.1}s` }}
-      />
-    ))}
-  </div>
-));
+export const WaveLoader = memo(({
+  size = 'md',
+  variant = 'primary',
+  color,
+  className = '',
+  ariaLabel = 'Loading',
+  wrapperStyle,
+  wrapperClass = '',
+  visible = true,
+  animationDuration = 1,
+}: LoaderProps) => {
+  if (!visible) return null;
+
+  const c = resolveColor(variant, color);
+  const { w, h } = BAR_SIZES[size];
+
+  return (
+    <div
+      role="status"
+      aria-label={ariaLabel}
+      className={`flex items-end space-x-1 ${wrapperClass}`}
+      style={wrapperStyle}
+    >
+      {[0, 1, 2, 3, 4].map((i) => (
+        <div
+          key={i}
+          className={`rounded-sm animate-wave ${className}`}
+          style={{
+            width: w,
+            height: h,
+            backgroundColor: c,
+            animationDelay: `${i * (animationDuration / 10)}s`,
+            animationDuration: `${animationDuration}s`,
+          }}
+        />
+      ))}
+      <span className="sr-only">{ariaLabel}</span>
+    </div>
+  );
+});
 
 WaveLoader.displayName = 'WaveLoader';

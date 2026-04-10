@@ -8,10 +8,16 @@ const CORNERS = [
   { x: '60%', y: '60%', delay: '1.5s' },
 ] as const;
 
-export const CornerSquaresLoader = memo(({ size = 'md', variant = 'primary' }: LoaderProps) => {
+export const CornerSquaresLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+  if (!visible) return null;
   const bg = LOADER_BG_VARIANTS[variant];
   return (
-    <div className={`${LOADER_SIZES[size]} relative`}>
+    <div
+      role="status"
+      aria-label={ariaLabel}
+      className={`${LOADER_SIZES[size]} relative ${wrapperClass}`}
+      style={wrapperStyle}
+    >
       {/* Ghost shape */}
       <div
         className={`absolute w-1/2 h-1/2 ${bg} rounded-sm opacity-20`}

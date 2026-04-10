@@ -8,10 +8,16 @@ const PIECES = [
   { x: '50%', y: '50%', delay: '0.75s' },
 ] as const;
 
-export const SquareSplitLoader = memo(({ size = 'md', variant = 'primary' }: LoaderProps) => {
+export const SquareSplitLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+  if (!visible) return null;
   const bg = LOADER_BG_VARIANTS[variant];
   return (
-    <div className={`${LOADER_SIZES[size]} relative`}>
+    <div
+      role="status"
+      aria-label={ariaLabel}
+      className={`${LOADER_SIZES[size]} relative ${wrapperClass}`}
+      style={wrapperStyle}
+    >
       {/* Ghost */}
       <div className={`absolute inset-[15%] ${bg} opacity-15`} />
       {PIECES.map((piece, i) => (

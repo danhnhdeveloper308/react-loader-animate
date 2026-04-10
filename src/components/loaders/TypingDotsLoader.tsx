@@ -1,7 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps } from './types';
 
-export const TypingDotsLoader = memo(({ size = 'md', variant = 'primary' }: LoaderProps) => {
+export const TypingDotsLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+  if (!visible) return null;
   const fills = {
     primary: 'bg-primary',
     accent: 'bg-accent',
@@ -13,7 +14,12 @@ export const TypingDotsLoader = memo(({ size = 'md', variant = 'primary' }: Load
   const containers = { sm: 'h-8', md: 'h-12', lg: 'h-16' };
 
   return (
-    <div className={`flex items-center ${gaps[size]} ${containers[size]}`}>
+    <div
+      role="status"
+      aria-label={ariaLabel}
+      className={`flex items-center ${gaps[size]} ${containers[size]} ${wrapperClass}`}
+      style={wrapperStyle}
+    >
       {[0, 1, 2].map((i) => (
         <div
           key={i}
@@ -24,4 +30,5 @@ export const TypingDotsLoader = memo(({ size = 'md', variant = 'primary' }: Load
     </div>
   );
 });
+
 TypingDotsLoader.displayName = 'TypingDotsLoader';

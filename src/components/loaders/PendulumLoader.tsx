@@ -1,7 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps } from './types';
 
-export const PendulumLoader = memo(({ size = 'md', variant = 'primary' }: LoaderProps) => {
+export const PendulumLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+  if (!visible) return null;
   const fills = {
     primary: 'bg-primary',
     accent: 'bg-accent',
@@ -12,7 +13,12 @@ export const PendulumLoader = memo(({ size = 'md', variant = 'primary' }: Loader
   const ballSizes = { sm: 'w-3 h-3', md: 'w-4 h-4', lg: 'w-5 h-5' };
 
   return (
-    <div className={`${containers[size]} relative`}>
+    <div
+      role="status"
+      aria-label={ariaLabel}
+      className={`${containers[size]} relative ${wrapperClass}`}
+      style={wrapperStyle}
+    >
       {/* 5 balls in a row */}
       {[0, 1, 2, 3, 4].map((i) => (
         <div key={i} className="absolute top-0" style={{ left: `${i * 25}%` }}>
@@ -31,4 +37,5 @@ export const PendulumLoader = memo(({ size = 'md', variant = 'primary' }: Loader
     </div>
   );
 });
+
 PendulumLoader.displayName = 'PendulumLoader';

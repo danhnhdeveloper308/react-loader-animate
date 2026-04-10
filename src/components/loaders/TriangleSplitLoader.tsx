@@ -9,10 +9,16 @@ const PIECES = [
   { x: '45%', y: '40%', delay: '1s' },
 ] as const;
 
-export const TriangleSplitLoader = memo(({ size = 'md', variant = 'primary' }: LoaderProps) => {
+export const TriangleSplitLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+  if (!visible) return null;
   const bg = LOADER_BG_VARIANTS[variant];
   return (
-    <div className={`${LOADER_SIZES[size]} relative`}>
+    <div
+      role="status"
+      aria-label={ariaLabel}
+      className={`${LOADER_SIZES[size]} relative ${wrapperClass}`}
+      style={wrapperStyle}
+    >
       {/* Ghost */}
       <div className={`absolute inset-[5%] ${bg} opacity-15`} style={{ clipPath: TRIANGLE_CLIP }} />
       {PIECES.map((piece, i) => (

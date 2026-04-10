@@ -3,7 +3,7 @@ import { LoaderProps, resolveColor } from './types';
 
 const DOT_SIZES = { sm: 6, md: 10, lg: 14 } as const;
 
-export const DotsLoader = memo(({
+export const SyncLoader = memo(({
   size = 'md',
   variant = 'primary',
   color,
@@ -12,7 +12,7 @@ export const DotsLoader = memo(({
   wrapperStyle,
   wrapperClass = '',
   visible = true,
-  animationDuration = 1.2,
+  animationDuration = 0.6,
 }: LoaderProps) => {
   if (!visible) return null;
 
@@ -23,25 +23,25 @@ export const DotsLoader = memo(({
     <div
       role="status"
       aria-label={ariaLabel}
-      className={`flex space-x-2 ${wrapperClass}`}
+      className={`flex items-center space-x-2 ${wrapperClass}`}
       style={wrapperStyle}
     >
       {[0, 1, 2].map((i) => (
         <div
           key={i}
-          className={`rounded-full animate-bounce-dot ${className}`}
+          className={`rounded-full ${className}`}
           style={{
             width: d,
             height: d,
             backgroundColor: c,
-            animationDelay: `${(i * animationDuration) / 7.5}s`,
-            animationDuration: `${animationDuration}s`,
+            animation: `bounce ${animationDuration}s ${i * (animationDuration / 3)}s ease-in-out infinite alternate`,
           }}
         />
       ))}
+      <style>{`@keyframes bounce { 0% { transform: translateY(0) } 100% { transform: translateY(-${d * 1.5}px) } }`}</style>
       <span className="sr-only">{ariaLabel}</span>
     </div>
   );
 });
 
-DotsLoader.displayName = 'DotsLoader';
+SyncLoader.displayName = 'SyncLoader';
