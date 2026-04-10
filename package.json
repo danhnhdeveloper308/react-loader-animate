@@ -60,5 +60,13 @@
   "files": [
     "dist",
     "tailwind.preset.ts"
-  ]
+  ],
+  "homepage": "https://danhnhdeveloper308.github.io/react-loader-animate-docs/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danhnhdeveloper308/react-loader-animate"
+  },
+  "bugs": {
+    "url": "https://github.com/danhnhdeveloper308/react-loader-animate/issues"
+  }
 }
