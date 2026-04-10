@@ -12,6 +12,10 @@ export default defineConfig({
   treeshake: true,
   outDir: 'dist',
   target: 'es2020',
+  // Use React 17+ automatic JSX runtime (no need to import React in every file)
+  esbuildOptions(options) {
+    options.jsx = 'automatic';
+  },
   // Required for Next.js App Router & React Server Components compatibility
   banner: {
     js: '"use client";',
