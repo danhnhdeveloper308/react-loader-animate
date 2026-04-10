@@ -1,3 +1,9 @@
+## [1.1.0](https://github.com/danhnhdeveloper308/react-loader-animate/compare/v1.0.3...v1.1.0) (2026-04-10)
+
+### Features
+
+* v1.0.4 — 52+ loaders, extended props API, new loaders, DNALoader fix, bundle optimization ([08f621f](https://github.com/danhnhdeveloper308/react-loader-animate/commit/08f621fa51534706911cff29a817dfa2448e89b6))
+
 ## [1.0.3](https://github.com/danhnhdeveloper308/react-loader-animate/compare/v1.0.2...v1.0.3) (2026-04-10)
 
 ### Bug Fixes
