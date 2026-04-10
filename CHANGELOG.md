@@ -1,3 +1,9 @@
+## [1.1.1](https://github.com/danhnhdeveloper308/react-loader-animate/compare/v1.1.0...v1.1.1) (2026-04-10)
+
+### Bug Fixes
+
+* add repository, homepage and bugs links to npm package metadata ([e99bdd9](https://github.com/danhnhdeveloper308/react-loader-animate/commit/e99bdd98014f0577fc2a73de802099de31577c64))
+
 ## [1.1.0](https://github.com/danhnhdeveloper308/react-loader-animate/compare/v1.0.3...v1.1.0) (2026-04-10)
 
 ### Features
