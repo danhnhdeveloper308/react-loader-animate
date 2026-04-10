@@ -56,5 +56,59 @@ export { Grid3x3Loader } from './Grid3x3Loader';
 export { BarsLoader } from './BarsLoader';
 export { RotatingLoader } from './RotatingLoader';
 
+// ── New loaders v4 ── Ring/Circle ─────────────────────────────────────────────
+export { RippleLoader } from './RippleLoader';
+export { DoubleRingLoader } from './DoubleRingLoader';
+export { ConcentricLoader } from './ConcentricLoader';
+export { DashLoader } from './DashLoader';
+export { CircleChaseLoader } from './CircleChaseLoader';
+export { TrailSpinLoader } from './TrailSpinLoader';
+
+// ── New loaders v4 ── Dots/Particles ──────────────────────────────────────────
+export { BouncingDotsLoader } from './BouncingDotsLoader';
+export { FlipDotsLoader } from './FlipDotsLoader';
+export { CircleDotsLoader } from './CircleDotsLoader';
+export { ChasingDotsLoader } from './ChasingDotsLoader';
+export { GlowDotsLoader } from './GlowDotsLoader';
+export { ParticleLoader } from './ParticleLoader';
+
+// ── New loaders v4 ── Bars/Lines ──────────────────────────────────────────────
+export { SoundBarsLoader } from './SoundBarsLoader';
+export { HorizontalBarsLoader } from './HorizontalBarsLoader';
+export { LineLoader } from './LineLoader';
+export { ZigzagBallLoader } from './ZigzagBallLoader';
+export { ProgressBarLoader } from './ProgressBarLoader';
+
+// ── New loaders v4 ── Geometric ───────────────────────────────────────────────
+export { CubeGridLoader } from './CubeGridLoader';
+export { PacmanLoader } from './PacmanLoader';
+export { TargetLoader } from './TargetLoader';
+export { WiFiLoader } from './WiFiLoader';
+export { MorphLoader } from './MorphLoader';
+export { SquaresTrailLoader } from './SquaresTrailLoader';
+
+// ── New loaders v4 ── Creative ────────────────────────────────────────────────
+export { HeartLoader } from './HeartLoader';
+export { FingerprintLoader } from './FingerprintLoader';
+export { GalaxyLoader } from './GalaxyLoader';
+export { BlobLoader } from './BlobLoader';
+export { TunnelLoader } from './TunnelLoader';
+export { MatrixLoader } from './MatrixLoader';
+export { WindmillLoader } from './WindmillLoader';
+
+// ── New loaders v5 ── Circle ──────────────────────────────────────────────────
+export { SolarSystemLoader } from './SolarSystemLoader';
+export { CometLoader } from './CometLoader';
+export { GlowRingLoader } from './GlowRingLoader';
+export { ChaseRingLoader } from './ChaseRingLoader';
+export { BreathingRingLoader } from './BreathingRingLoader';
+
+// ── New loaders v5 ── Grid ────────────────────────────────────────────────────
+export { GridWaveLoader } from './GridWaveLoader';
+export { GridBounceLoader } from './GridBounceLoader';
+export { GridRainLoader } from './GridRainLoader';
+export { GridPulseLoader } from './GridPulseLoader';
+export { GridSnakeLoader } from './GridSnakeLoader';
+
 export type { LoaderProps } from './types';
 export { LOADER_SIZES, LOADER_BG_VARIANTS, LOADER_BORDER_VARIANTS, resolveColor, resolveSizeClass } from './types';
