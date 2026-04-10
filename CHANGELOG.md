@@ -1,3 +1,9 @@
+## [1.2.0](https://github.com/danhnhdeveloper308/react-loader-animate/compare/v1.1.1...v1.2.0) (2026-04-10)
+
+### Features
+
+* add 40 new loaders (v4+v5), fix MorphLoader and BlobLoader, update docs to 92+ components ([c74a753](https://github.com/danhnhdeveloper308/react-loader-animate/commit/c74a753275e5e1fda3afb39104c7c438d81e9b34))
+
 ## [1.1.1](https://github.com/danhnhdeveloper308/react-loader-animate/compare/v1.1.0...v1.1.1) (2026-04-10)
 
 ### Bug Fixes
