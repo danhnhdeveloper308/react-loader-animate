@@ -1,3 +1,9 @@
+## [1.4.0](https://github.com/danhnhdeveloper308/react-loader-animate/compare/v1.3.0...v1.4.0) (2026-04-23)
+
+### Features
+
+* add 20 new unique loaders (v7) — helix, sonar, newton, shimmer, constellation and more (162+ total) ([cb3a558](https://github.com/danhnhdeveloper308/react-loader-animate/commit/cb3a558b61f6ad3d424c3d3e98e158175d9e4071))
+
 ## [1.3.0](https://github.com/danhnhdeveloper308/react-loader-animate/compare/v1.2.0...v1.3.0) (2026-04-23)
 
 ### Features
