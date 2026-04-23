@@ -1,3 +1,13 @@
+## [1.3.0](https://github.com/danhnhdeveloper308/react-loader-animate/compare/v1.2.0...v1.3.0) (2026-04-23)
+
+### Features
+
+* add 50 new loaders (v6) — spinners, dots, bars, geometric, creative/nature (142+ total) ([b2604f7](https://github.com/danhnhdeveloper308/react-loader-animate/commit/b2604f79c2a82ecf52db19ef9ef8c03f905bd49c))
+
+### Bug Fixes
+
+* replace any casts with explicit type in MirrorDotsLoader ([0a35635](https://github.com/danhnhdeveloper308/react-loader-animate/commit/0a3563594e2a2275f3241b45a783a0b8e6a09e97))
+
 ## [1.2.0](https://github.com/danhnhdeveloper308/react-loader-animate/compare/v1.1.1...v1.2.0) (2026-04-10)
 
 ### Features
