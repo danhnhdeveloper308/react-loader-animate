@@ -170,5 +170,27 @@ export { NeoTrailLoader } from './NeoTrailLoader';
 export { ThunderLoader } from './ThunderLoader';
 export { BarrelLoader } from './BarrelLoader';
 
+// ── New loaders v7 ── 20 unique additions ─────────────────────────────────────
+export { HelixLoader } from './HelixLoader';
+export { RippleSquareLoader } from './RippleSquareLoader';
+export { TypewriterLoader } from './TypewriterLoader';
+export { SonarLoader } from './SonarLoader';
+export { NewtonLoader } from './NewtonLoader';
+export { SignalLoader } from './SignalLoader';
+export { CounterLoader } from './CounterLoader';
+export { CubeUnfoldLoader } from './CubeUnfoldLoader';
+export { SineWaveLoader } from './SineWaveLoader';
+export { ChaseLoader } from './ChaseLoader';
+export { SandTimer } from './SandTimer';
+export { ShimmerLoader } from './ShimmerLoader';
+export { GradientArcLoader } from './GradientArcLoader';
+export { TriangleRingLoader } from './TriangleRingLoader';
+export { DoubleHelixLoader } from './DoubleHelixLoader';
+export { PulseRingLoader } from './PulseRingLoader';
+export { BouncingLineLoader } from './BouncingLineLoader';
+export { OrbLoader } from './OrbLoader';
+export { FoldingLoader } from './FoldingLoader';
+export { ConstellationLoader } from './ConstellationLoader';
+
 export type { LoaderProps } from './types';
 export { LOADER_SIZES, LOADER_BG_VARIANTS, LOADER_BORDER_VARIANTS, resolveColor, resolveSizeClass } from './types';
