@@ -1,6 +1,6 @@
 # react-loader-animate
 
-> A collection of **92+ animated loading components** built with React, TypeScript, and Tailwind CSS — lightweight, tree-shakable, and fully customizable.
+> A collection of **142+ animated loading components** built with React, TypeScript, and Tailwind CSS — lightweight, tree-shakable, and fully customizable.
 
 [![npm version](https://img.shields.io/npm/v/react-loader-animate?color=CB3837&logo=npm&label=npm)](https://www.npmjs.com/package/react-loader-animate)
 [![npm downloads](https://img.shields.io/npm/dm/react-loader-animate?color=CB3837&logo=npm)](https://www.npmjs.com/package/react-loader-animate)
@@ -13,7 +13,7 @@
 
 ## ✨ Features
 
-- 🎨 **92+ loader animations** — spin, pulse, wave, orbit, DNA, hourglass, and more
+- 🎨 **142+ loader animations** — spin, pulse, wave, orbit, DNA, hourglass, and more
 - 📐 **3 built-in sizes** — `sm`, `md`, `lg`
 - 🎭 **4 colour variants** — `primary`, `accent`, `success`, `warning`
 - 🖌️ **Full customisation** — `color`, `height`, `width`, `animationDuration`, `strokeWidth`, `colors[]`

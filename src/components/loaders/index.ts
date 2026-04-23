@@ -110,5 +110,65 @@ export { GridRainLoader } from './GridRainLoader';
 export { GridPulseLoader } from './GridPulseLoader';
 export { GridSnakeLoader } from './GridSnakeLoader';
 
+// ── New loaders v6 ── Spinners ────────────────────────────────────────────────
+export { NeonSpinLoader } from './NeonSpinLoader';
+export { ArcSpinLoader } from './ArcSpinLoader';
+export { GyroscopeLoader } from './GyroscopeLoader';
+export { ElasticRingLoader } from './ElasticRingLoader';
+export { VortexLoader } from './VortexLoader';
+export { HalfSpinLoader } from './HalfSpinLoader';
+export { PulsatingSquareLoader } from './PulsatingSquareLoader';
+export { SphereDotsLoader } from './SphereDotsLoader';
+export { OctaLoader } from './OctaLoader';
+export { CylinderLoader } from './CylinderLoader';
+
+// ── New loaders v6 ── Dots/Bounce ─────────────────────────────────────────────
+export { StepDotsLoader } from './StepDotsLoader';
+export { NeonDotsLoader } from './NeonDotsLoader';
+export { QuadDotsLoader } from './QuadDotsLoader';
+export { OrbitalDotsLoader } from './OrbitalDotsLoader';
+export { MirrorDotsLoader } from './MirrorDotsLoader';
+export { BubbleLoader } from './BubbleLoader';
+export { WaterDropLoader } from './WaterDropLoader';
+export { SatelliteLoader } from './SatelliteLoader';
+export { MoleculeLoader } from './MoleculeLoader';
+export { OscillateLoader } from './OscillateLoader';
+
+// ── New loaders v6 ── Bars/Lines ──────────────────────────────────────────────
+export { PianoKeysLoader } from './PianoKeysLoader';
+export { LevelMeterLoader } from './LevelMeterLoader';
+export { CountdownBarLoader } from './CountdownBarLoader';
+export { StaircaseLoader } from './StaircaseLoader';
+export { FilmStripLoader } from './FilmStripLoader';
+export { ScanLoader } from './ScanLoader';
+export { BatteryLoader } from './BatteryLoader';
+export { DialLoader } from './DialLoader';
+export { CompassLoader } from './CompassLoader';
+export { GlitchLoader } from './GlitchLoader';
+
+// ── New loaders v6 ── Geometric ───────────────────────────────────────────────
+export { HexGridLoader } from './HexGridLoader';
+export { CrosshairLoader } from './CrosshairLoader';
+export { TesseractLoader } from './TesseractLoader';
+export { KaleidoLoader } from './KaleidoLoader';
+export { IsometricLoader } from './IsometricLoader';
+export { GearTrainLoader } from './GearTrainLoader';
+export { CubeRotateLoader } from './CubeRotateLoader';
+export { SparkleLoader } from './SparkleLoader';
+export { EclipseLoader } from './EclipseLoader';
+export { CrystalLoader } from './CrystalLoader';
+
+// ── New loaders v6 ── Creative/Nature ─────────────────────────────────────────
+export { RocketLoader } from './RocketLoader';
+export { SnowflakeLoader } from './SnowflakeLoader';
+export { FireLoader } from './FireLoader';
+export { LeafLoader } from './LeafLoader';
+export { CircuitLoader } from './CircuitLoader';
+export { LiquidFillLoader } from './LiquidFillLoader';
+export { PlasmaLoader } from './PlasmaLoader';
+export { NeoTrailLoader } from './NeoTrailLoader';
+export { ThunderLoader } from './ThunderLoader';
+export { BarrelLoader } from './BarrelLoader';
+
 export type { LoaderProps } from './types';
 export { LOADER_SIZES, LOADER_BG_VARIANTS, LOADER_BORDER_VARIANTS, resolveColor, resolveSizeClass } from './types';
