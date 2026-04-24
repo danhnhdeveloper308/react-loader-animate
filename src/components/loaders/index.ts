@@ -194,3 +194,37 @@ export { ConstellationLoader } from './ConstellationLoader';
 
 export type { LoaderProps } from './types';
 export { LOADER_SIZES, LOADER_BG_VARIANTS, LOADER_BORDER_VARIANTS, resolveColor, resolveSizeClass } from './types';
+
+// ── New loaders v8 ── Rotating circles ────────────────────────────────────────
+export { DoubleDotOrbitLoader } from './DoubleDotOrbitLoader';
+export { ArcBallLoader } from './ArcBallLoader';
+export { NestedRingsLoader } from './NestedRingsLoader';
+export { SpinTrailLoader } from './SpinTrailLoader';
+export { CometRingLoader } from './CometRingLoader';
+export { TwinSpinLoader } from './TwinSpinLoader';
+export { EllipseOrbitLoader } from './EllipseOrbitLoader';
+export { PetalSpinLoader } from './PetalSpinLoader';
+export { RotatingDashesLoader } from './RotatingDashesLoader';
+export { SpinPulseLoader } from './SpinPulseLoader';
+
+// ── New loaders v8 ── Split / Merge ───────────────────────────────────────────
+export { SplitCircleLoader } from './SplitCircleLoader';
+export { MergeBallsLoader } from './MergeBallsLoader';
+export { BurstLoader } from './BurstLoader';
+export { SplitSquareLoader } from './SplitSquareLoader';
+export { AtomSplitLoader } from './AtomSplitLoader';
+export { FissionLoader } from './FissionLoader';
+export { ExpandContractLoader } from './ExpandContractLoader';
+export { SplitRingLoader } from './SplitRingLoader';
+export { PuzzleLoader } from './PuzzleLoader';
+export { CollideLoader } from './CollideLoader';
+
+// ── New loaders v8 ── Creative rotators ───────────────────────────────────────
+export { YingYangLoader } from './YingYangLoader';
+export { DonutSpinLoader } from './DonutSpinLoader';
+export { PinwheelLoader } from './PinwheelLoader';
+export { SpinSquaresLoader } from './SpinSquaresLoader';
+export { FlowerSpinLoader } from './FlowerSpinLoader';
+export { WheelSpinLoader } from './WheelSpinLoader';
+export { SpiralSpinLoader } from './SpiralSpinLoader';
+export { TripleMergeLoader } from './TripleMergeLoader';

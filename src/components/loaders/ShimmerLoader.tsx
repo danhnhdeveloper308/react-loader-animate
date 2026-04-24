@@ -9,9 +9,13 @@ export const ShimmerLoader=memo(({size='md',variant='primary',color,visible=true
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
     <div style={{display:'flex',flexDirection:'column',gap:h*0.6}}>
       {[w,w*0.75,w*0.55].map((bw,i)=>(
-        <div key={i} style={{position:'relative',width:bw,height:h,borderRadius:h/2,overflow:'hidden',background:c,opacity:0.15}}>
-          <div style={{position:'absolute',inset:0,background:`linear-gradient(90deg,transparent,${c},transparent)`,opacity:0.6,
-            animation:`rla-shimmer ${animationDuration}s ease-in-out ${i*0.2}s infinite`}}/>
+        <div key={i} style={{position:'relative',width:bw,height:h,borderRadius:h/2,overflow:'hidden',background:c,opacity:0.2}}>
+          {/* shimmer highlight — pure white overlay so contrast works on any color */}
+          <div style={{
+            position:'absolute',inset:0,
+            background:'linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.55) 50%,transparent 100%)',
+            animation:`rla-shimmer ${animationDuration}s ease-in-out ${i*0.25}s infinite`
+          }}/>
         </div>
       ))}
     </div>
