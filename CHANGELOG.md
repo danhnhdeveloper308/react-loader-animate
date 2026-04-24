@@ -1,3 +1,9 @@
+## [1.5.0](https://github.com/danhnhdeveloper308/react-loader-animate/compare/v1.4.0...v1.5.0) (2026-04-24)
+
+### Features
+
+* add 30 new loaders (v8) — rotating circles, split/merge, creative rotators (192+ total) ([0b02eca](https://github.com/danhnhdeveloper308/react-loader-animate/commit/0b02ecaec0df321b04ff17b5deeddb11c8320429))
+
 ## [1.4.0](https://github.com/danhnhdeveloper308/react-loader-animate/compare/v1.3.0...v1.4.0) (2026-04-23)
 
 ### Features
