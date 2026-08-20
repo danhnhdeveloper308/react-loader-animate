@@ -1,10 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor } from './types';
 const CONFIGS={sm:{s:36},md:{s:50},lg:{s:64}};
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-sandfall{0%,100%{height:0;opacity:0}20%,80%{opacity:1}50%{height:12px}}@keyframes rla-sandflip{0%,45%{transform:rotate(0deg)}55%,100%{transform:rotate(180deg)}}`;document.head.appendChild(el);}
 export const SandTimer=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=2.4}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{s}=CONFIGS[size];const c=resolveColor(variant,color);
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
     <div style={{width:s,height:s,display:'flex',alignItems:'center',justifyContent:'center',
@@ -19,4 +17,3 @@ export const SandTimer=memo(({size='md',variant='primary',color,visible=true,ari
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-SandTimer.displayName='SandTimer';

@@ -7,21 +7,13 @@ const CONFIGS = {
   lg: { dot: 14, gap: 7 },
 };
 
-const KF = `@keyframes rla-flip-dot{0%,100%{transform:perspective(120px) rotateX(0deg);opacity:1}50%{transform:perspective(120px) rotateX(-180deg);opacity:0.4}}`;
-let inj = false;
-function inject() {
-  if (inj || typeof document === 'undefined') return;
-  const s = document.createElement('style'); s.textContent = KF;
-  document.head.appendChild(s); inj = true;
-}
-
-export const FlipDotsLoader = memo(({
+export const FlipDotsLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.2,
 }: LoaderProps) => {
   if (!visible) return null;
-  inject();
+  ;
   const { dot, gap } = CONFIGS[size];
   const c = resolveColor(variant, color);
   return (
@@ -44,4 +36,3 @@ export const FlipDotsLoader = memo(({
     </div>
   );
 });
-FlipDotsLoader.displayName = 'FlipDotsLoader';

@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { LoaderProps, LOADER_SIZES, LOADER_BG_VARIANTS } from './types';
+import { LoaderProps, resolveColorStyle, LOADER_SIZES, LOADER_BG_VARIANTS } from './types';
 
 const DIAMOND_CLIP = 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)';
 
@@ -10,7 +10,7 @@ const PIECES = [
   { x: '-55%', y: '0%', delay: '1.2s' },
 ] as const;
 
-export const DiamondSplitLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const DiamondSplitLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
   if (!visible) return null;
   const bg = LOADER_BG_VARIANTS[variant];
   return (
@@ -18,7 +18,7 @@ export const DiamondSplitLoader = memo(({ size = 'md', variant = 'primary', visi
       role="status"
       aria-label={ariaLabel}
       className={`${LOADER_SIZES[size]} relative ${wrapperClass}`}
-      style={wrapperStyle}
+      style={{ ...wrapperStyle, ...resolveColorStyle(variant, color) }}
     >
       {/* Ghost */}
       <div className={`absolute inset-[5%] ${bg} opacity-15`} style={{ clipPath: DIAMOND_CLIP }} />
@@ -39,5 +39,3 @@ export const DiamondSplitLoader = memo(({ size = 'md', variant = 'primary', visi
     </div>
   );
 });
-
-DiamondSplitLoader.displayName = 'DiamondSplitLoader';

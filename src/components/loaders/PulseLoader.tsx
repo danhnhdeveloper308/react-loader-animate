@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor, resolveSizeClass } from './types';
 
-export const PulseLoader = memo(({
+export const PulseLoader = /* @__PURE__ */ memo(({
   size = 'md',
   variant = 'primary',
   color,
@@ -38,5 +38,3 @@ export const PulseLoader = memo(({
     </div>
   );
 });
-
-PulseLoader.displayName = 'PulseLoader';

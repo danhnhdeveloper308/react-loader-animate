@@ -1,9 +1,7 @@
 import{memo}from'react';import{LoaderProps,resolveColor}from'./types';
 const CONFIGS={sm:{s:40},md:{s:56},lg:{s:72}};
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-spinsq{0%{transform:rotate(0deg) scale(1)}50%{transform:rotate(180deg) scale(0.7)}100%{transform:rotate(360deg) scale(1)}}`;document.head.appendChild(el);}
 export const SpinSquaresLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=2}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{s}=CONFIGS[size];const c=resolveColor(variant,color);
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
     <div style={{position:'relative',width:s,height:s,display:'flex',alignItems:'center',justifyContent:'center'}}>
@@ -16,4 +14,3 @@ export const SpinSquaresLoader=memo(({size='md',variant='primary',color,visible=
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-SpinSquaresLoader.displayName='SpinSquaresLoader';

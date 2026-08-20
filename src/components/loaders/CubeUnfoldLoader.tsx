@@ -1,10 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor } from './types';
 const CONFIGS={sm:{s:40},md:{s:56},lg:{s:72}};
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-cunfold{0%,100%{transform:rotateY(0deg) rotateX(0deg)}33%{transform:rotateY(180deg) rotateX(0deg)}66%{transform:rotateY(180deg) rotateX(180deg)}}`;document.head.appendChild(el);}
 export const CubeUnfoldLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=2.4}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{s}=CONFIGS[size];const c=resolveColor(variant,color);const cs=s*0.45;
   const faces=[
     {transform:'rotateY(0deg) translateZ('+cs/2+'px)'},
@@ -26,4 +24,3 @@ export const CubeUnfoldLoader=memo(({size='md',variant='primary',color,visible=t
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-CubeUnfoldLoader.displayName='CubeUnfoldLoader';

@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { LoaderProps, LOADER_SIZES, LOADER_BG_VARIANTS } from './types';
+import { LoaderProps, resolveColorStyle, LOADER_SIZES, LOADER_BG_VARIANTS } from './types';
 
 const CORNERS = [
   { x: '-60%', y: '-60%', delay: '0s' },
@@ -8,7 +8,7 @@ const CORNERS = [
   { x: '60%', y: '60%', delay: '1.5s' },
 ] as const;
 
-export const CornerSquaresLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const CornerSquaresLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
   if (!visible) return null;
   const bg = LOADER_BG_VARIANTS[variant];
   return (
@@ -16,7 +16,7 @@ export const CornerSquaresLoader = memo(({ size = 'md', variant = 'primary', vis
       role="status"
       aria-label={ariaLabel}
       className={`${LOADER_SIZES[size]} relative ${wrapperClass}`}
-      style={wrapperStyle}
+      style={{ ...wrapperStyle, ...resolveColorStyle(variant, color) }}
     >
       {/* Ghost shape */}
       <div
@@ -39,5 +39,3 @@ export const CornerSquaresLoader = memo(({ size = 'md', variant = 'primary', vis
     </div>
   );
 });
-
-CornerSquaresLoader.displayName = 'CornerSquaresLoader';

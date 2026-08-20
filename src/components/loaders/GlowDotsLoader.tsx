@@ -7,21 +7,13 @@ const CONFIGS = {
   lg: { dotR: 8, gap: 12 },
 };
 
-const KF = `@keyframes rla-glow{0%,100%{transform:scale(0.6);opacity:0.2;box-shadow:none}50%{transform:scale(1);opacity:1;box-shadow:var(--rla-glow-shadow)}}`;
-let inj = false;
-function inject() {
-  if (inj || typeof document === 'undefined') return;
-  const s = document.createElement('style'); s.textContent = KF;
-  document.head.appendChild(s); inj = true;
-}
-
-export const GlowDotsLoader = memo(({
+export const GlowDotsLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.5,
 }: LoaderProps) => {
   if (!visible) return null;
-  inject();
+  ;
   const { dotR, gap } = CONFIGS[size];
   const c = resolveColor(variant, color);
   return (
@@ -43,4 +35,3 @@ export const GlowDotsLoader = memo(({
     </div>
   );
 });
-GlowDotsLoader.displayName = 'GlowDotsLoader';

@@ -1,9 +1,7 @@
 import{memo}from'react';import{LoaderProps,resolveColor}from'./types';
 const CONFIGS={sm:{s:40,sw:3},md:{s:56,sw:4},lg:{s:72,sw:5}};
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-arcball{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}@keyframes rla-arcball2{0%{transform:rotate(0deg)}100%{transform:rotate(-360deg)}}`;document.head.appendChild(el);}
 export const ArcBallLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=1.2}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{s,sw}=CONFIGS[size];const c=resolveColor(variant,color);const r=s/2-sw;const r2=r*0.55;const circ=2*Math.PI*r;const circ2=2*Math.PI*r2;
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
     <svg width={s} height={s} viewBox={`0 0 ${s} ${s}`}>
@@ -17,4 +15,3 @@ export const ArcBallLoader=memo(({size='md',variant='primary',color,visible=true
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-ArcBallLoader.displayName='ArcBallLoader';

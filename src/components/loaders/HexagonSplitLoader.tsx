@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { LoaderProps, LOADER_SIZES, LOADER_BG_VARIANTS } from './types';
+import { LoaderProps, resolveColorStyle, LOADER_SIZES, LOADER_BG_VARIANTS } from './types';
 
 const HEXAGON_CLIP = 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)';
 
@@ -12,7 +12,7 @@ const PIECES = [
   { x: '-52%', y: '-30%', delay: '1.5s' },
 ] as const;
 
-export const HexagonSplitLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const HexagonSplitLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
   if (!visible) return null;
   const bg = LOADER_BG_VARIANTS[variant];
   return (
@@ -20,7 +20,7 @@ export const HexagonSplitLoader = memo(({ size = 'md', variant = 'primary', visi
       role="status"
       aria-label={ariaLabel}
       className={`${LOADER_SIZES[size]} relative ${wrapperClass}`}
-      style={wrapperStyle}
+      style={{ ...wrapperStyle, ...resolveColorStyle(variant, color) }}
     >
       {/* Ghost */}
       <div className={`absolute inset-[5%] ${bg} opacity-15`} style={{ clipPath: HEXAGON_CLIP }} />
@@ -41,5 +41,3 @@ export const HexagonSplitLoader = memo(({ size = 'md', variant = 'primary', visi
     </div>
   );
 });
-
-HexagonSplitLoader.displayName = 'HexagonSplitLoader';

@@ -1,10 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor } from './types';
 const CONFIGS = { sm:{s:40}, md:{s:56}, lg:{s:72} };
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-dial{0%{transform:rotate(-120deg)}50%{transform:rotate(120deg)}100%{transform:rotate(-120deg)}}`;document.head.appendChild(el);}
 export const DialLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=2}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{s}=CONFIGS[size];const c=resolveColor(variant,color);const cx=s/2,r=cx*0.85;
   const ticks=Array.from({length:9},(_,i)=>{const a=-120+i*30;const rad=a*Math.PI/180;return{x1:cx+(r-s*0.08)*Math.cos(rad),y1:cx+(r-s*0.08)*Math.sin(rad),x2:cx+r*Math.cos(rad),y2:cx+r*Math.sin(rad)};});
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
@@ -17,4 +15,3 @@ export const DialLoader=memo(({size='md',variant='primary',color,visible=true,ar
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-DialLoader.displayName='DialLoader';

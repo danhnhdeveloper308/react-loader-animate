@@ -3,7 +3,7 @@ import { LoaderProps, resolveColor } from './types';
 
 const DOT_SIZES = { sm: 5, md: 8, lg: 11 } as const;
 
-export const MutatingDotsLoader = memo(({
+export const MutatingDotsLoader = /* @__PURE__ */ memo(({
   size = 'md',
   variant = 'primary',
   color,
@@ -62,5 +62,3 @@ export const MutatingDotsLoader = memo(({
     </div>
   );
 });
-
-MutatingDotsLoader.displayName = 'MutatingDotsLoader';

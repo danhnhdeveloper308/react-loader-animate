@@ -7,21 +7,13 @@ const CONFIGS = {
   lg: { count: 10, r: 24, dotR: 4 },
 };
 
-const KF = `@keyframes rla-particle{0%{transform:translate(0,0);opacity:1}100%{transform:var(--rla-tx,0) var(--rla-ty,0);opacity:0}}`;
-let inj = false;
-function inject() {
-  if (inj || typeof document === 'undefined') return;
-  const s = document.createElement('style'); s.textContent = KF;
-  document.head.appendChild(s); inj = true;
-}
-
-export const ParticleLoader = memo(({
+export const ParticleLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.8,
 }: LoaderProps) => {
   if (!visible) return null;
-  inject();
+  ;
   const { count, r, dotR } = CONFIGS[size];
   const c = resolveColor(variant, color);
   const vb = (r + dotR) * 2 + r * 2;
@@ -58,4 +50,3 @@ export const ParticleLoader = memo(({
     </div>
   );
 });
-ParticleLoader.displayName = 'ParticleLoader';

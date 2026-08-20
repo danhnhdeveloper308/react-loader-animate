@@ -64,6 +64,21 @@ export function resolveColor(
 }
 
 /**
+ * Bridges direct color props into legacy utility-based loaders without
+ * mutating global theme tokens. The override is scoped to the loader root.
+ */
+export function resolveColorStyle(
+  variant: LoaderProps['variant'] = 'primary',
+  color?: string
+): CSSProperties {
+  const resolved = resolveColor(variant, color);
+  return {
+    color: resolved,
+    [`--${variant}`]: resolved,
+  } as CSSProperties;
+}
+
+/**
  * Resolves the size class + inline style taking height/width overrides into account.
  */
 export function resolveSizeClass(

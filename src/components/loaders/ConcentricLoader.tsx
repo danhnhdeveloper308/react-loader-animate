@@ -7,7 +7,7 @@ const CONFIGS = {
   lg: { rings: [22, 15, 8], sw: 2.5 },
 };
 
-export const ConcentricLoader = memo(({
+export const ConcentricLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.6,
@@ -41,4 +41,3 @@ export const ConcentricLoader = memo(({
     </div>
   );
 });
-ConcentricLoader.displayName = 'ConcentricLoader';

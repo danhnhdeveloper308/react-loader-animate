@@ -1,7 +1,7 @@
 import { memo } from 'react';
-import { LoaderProps, LOADER_SIZES, LOADER_BORDER_VARIANTS } from './types';
+import { LoaderProps, resolveColorStyle, LOADER_SIZES, LOADER_BORDER_VARIANTS } from './types';
 
-export const ClockLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const ClockLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
   if (!visible) return null;
   const bg = {
     primary: 'bg-primary',
@@ -14,7 +14,7 @@ export const ClockLoader = memo(({ size = 'md', variant = 'primary', visible = t
       role="status"
       aria-label={ariaLabel}
       className={`${LOADER_SIZES[size]} relative rounded-full border-2 ${LOADER_BORDER_VARIANTS[variant]} ${wrapperClass}`}
-      style={wrapperStyle}
+      style={{ ...wrapperStyle, ...resolveColorStyle(variant, color) }}
     >
       {/* Hour hand */}
       <div
@@ -31,5 +31,3 @@ export const ClockLoader = memo(({ size = 'md', variant = 'primary', visible = t
     </div>
   );
 });
-
-ClockLoader.displayName = 'ClockLoader';

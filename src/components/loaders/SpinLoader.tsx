@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor, resolveSizeClass } from './types';
 
-export const SpinLoader = memo(({
+export const SpinLoader = /* @__PURE__ */ memo(({
   size = 'md',
   variant = 'primary',
   color,
@@ -40,5 +40,3 @@ export const SpinLoader = memo(({
     </div>
   );
 });
-
-SpinLoader.displayName = 'SpinLoader';

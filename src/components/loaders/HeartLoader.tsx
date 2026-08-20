@@ -7,7 +7,7 @@ const CONFIGS = {
   lg: { size: 56 },
 };
 
-export const HeartLoader = memo(({
+export const HeartLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 0.9,
@@ -47,4 +47,3 @@ export const HeartLoader = memo(({
     </div>
   );
 });
-HeartLoader.displayName = 'HeartLoader';

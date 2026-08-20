@@ -1,10 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor } from './types';
 const CONFIGS = { sm:{s:40}, md:{s:56}, lg:{s:72} };
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-fire1{0%,100%{transform:scaleY(1) scaleX(1) translateY(0);opacity:0.9}50%{transform:scaleY(1.15) scaleX(0.9) translateY(-5px);opacity:0.7}}@keyframes rla-fire2{0%,100%{transform:scaleY(0.85) scaleX(1.1) translateY(3px);opacity:0.8}50%{transform:scaleY(1.2) scaleX(0.85) translateY(-3px);opacity:1}}@keyframes rla-fire3{0%,100%{transform:scaleY(0.7) translateY(5px);opacity:0.6}50%{transform:scaleY(1.1) translateY(-2px);opacity:0.9}}`;document.head.appendChild(el);}
 export const FireLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=0.9}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{s}=CONFIGS[size];const c=resolveColor(variant,color);const cx=s/2,base=s*0.75;
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
     <svg width={s} height={s} viewBox="0 0 100 100">
@@ -18,4 +16,3 @@ export const FireLoader=memo(({size='md',variant='primary',color,visible=true,ar
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-FireLoader.displayName='FireLoader';

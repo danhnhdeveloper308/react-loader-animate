@@ -7,21 +7,13 @@ const CONFIGS = {
   lg: { dotR: 8, gap: 12 },
 };
 
-const KF = `@keyframes rla-bounce-dot{0%,80%,100%{transform:scale(0);opacity:0.3}40%{transform:scale(1);opacity:1}}`;
-let inj = false;
-function inject() {
-  if (inj || typeof document === 'undefined') return;
-  const s = document.createElement('style'); s.textContent = KF;
-  document.head.appendChild(s); inj = true;
-}
-
-export const BouncingDotsLoader = memo(({
+export const BouncingDotsLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.4,
 }: LoaderProps) => {
   if (!visible) return null;
-  inject();
+  ;
   const { dotR, gap } = CONFIGS[size];
   const c = resolveColor(variant, color);
   return (
@@ -39,4 +31,3 @@ export const BouncingDotsLoader = memo(({
     </div>
   );
 });
-BouncingDotsLoader.displayName = 'BouncingDotsLoader';

@@ -4,7 +4,7 @@ import { LoaderProps, resolveColor } from './types';
 const DOT_SIZE = { sm: 6, md: 10, lg: 14 };
 const GAP = { sm: 3, md: 5, lg: 7 };
 
-export const Grid3x3Loader = memo(({
+export const Grid3x3Loader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'grid-loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1,
@@ -42,4 +42,3 @@ export const Grid3x3Loader = memo(({
     </div>
   );
 });
-Grid3x3Loader.displayName = 'Grid3x3Loader';

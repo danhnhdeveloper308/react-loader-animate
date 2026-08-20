@@ -1,10 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor } from './types';
 const CONFIGS={sm:{s:36},md:{s:52},lg:{s:68}};
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-scanwrap{0%{transform:translateY(0%);opacity:0}8%{opacity:1}92%{opacity:1}100%{transform:translateY(100%);opacity:0}}`;document.head.appendChild(el);}
 export const ScanLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=2}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{s}=CONFIGS[size];const c=resolveColor(variant,color);
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
     <div style={{position:'relative',width:s,height:s,overflow:'hidden',border:`1px solid ${c}`,borderRadius:4,opacity:1,boxSizing:'border-box'}}>
@@ -25,4 +23,3 @@ export const ScanLoader=memo(({size='md',variant='primary',color,visible=true,ar
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-ScanLoader.displayName='ScanLoader';

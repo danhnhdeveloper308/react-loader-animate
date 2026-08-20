@@ -7,7 +7,7 @@ const CONFIGS = {
   lg: { rings: [24, 16, 8], sw: 3 },
 };
 
-export const TargetLoader = memo(({
+export const TargetLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.5,
@@ -43,4 +43,3 @@ export const TargetLoader = memo(({
     </div>
   );
 });
-TargetLoader.displayName = 'TargetLoader';

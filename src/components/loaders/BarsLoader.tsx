@@ -7,28 +7,13 @@ const CONFIGS = {
   lg: { count: 5, barW: 7, maxH: 52 },
 };
 
-const BARS_KEYFRAMES = `
-@keyframes rla-bars {
-  0%, 40%, 100% { transform: scaleY(0.4); }
-  20% { transform: scaleY(1); }
-}`;
-
-let injected = false;
-function injectBarsKeyframes() {
-  if (injected || typeof document === 'undefined') return;
-  const style = document.createElement('style');
-  style.textContent = BARS_KEYFRAMES;
-  document.head.appendChild(style);
-  injected = true;
-}
-
-export const BarsLoader = memo(({
+export const BarsLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'bars-loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1,
 }: LoaderProps) => {
   if (!visible) return null;
-  injectBarsKeyframes();
+  ;
   const { count, barW, maxH } = CONFIGS[size];
   const c = resolveColor(variant, color);
   return (
@@ -60,4 +45,3 @@ export const BarsLoader = memo(({
     </div>
   );
 });
-BarsLoader.displayName = 'BarsLoader';

@@ -7,7 +7,7 @@ const CONFIGS = {
   lg: { r: 24, dotR: 4, count: 12 },
 };
 
-export const CircleDotsLoader = memo(({
+export const CircleDotsLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.2,
@@ -45,4 +45,3 @@ export const CircleDotsLoader = memo(({
     </div>
   );
 });
-CircleDotsLoader.displayName = 'CircleDotsLoader';

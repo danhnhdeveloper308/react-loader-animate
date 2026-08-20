@@ -3,7 +3,7 @@ import { LoaderProps, resolveColor } from './types';
 
 const BAR_SIZES = { sm: { w: 4, h: 16 }, md: { w: 6, h: 24 }, lg: { w: 8, h: 32 } } as const;
 
-export const WaveLoader = memo(({
+export const WaveLoader = /* @__PURE__ */ memo(({
   size = 'md',
   variant = 'primary',
   color,
@@ -43,5 +43,3 @@ export const WaveLoader = memo(({
     </div>
   );
 });
-
-WaveLoader.displayName = 'WaveLoader';

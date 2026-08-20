@@ -1,9 +1,7 @@
 import{memo}from'react';import{LoaderProps,resolveColor}from'./types';
 const CONFIGS={sm:{s:40},md:{s:56},lg:{s:72}};
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-wheel{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}`;document.head.appendChild(el);}
 export const WheelSpinLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=1.8}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{s}=CONFIGS[size];const c=resolveColor(variant,color);const n=8;const cx=s/2;const ri=cx*0.22;const ro=cx*0.85;
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
     <svg width={s} height={s} viewBox={`0 0 ${s} ${s}`} style={{animation:`rla-wheel ${animationDuration}s linear infinite`}}>
@@ -22,4 +20,3 @@ export const WheelSpinLoader=memo(({size='md',variant='primary',color,visible=tr
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-WheelSpinLoader.displayName='WheelSpinLoader';

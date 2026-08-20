@@ -7,7 +7,7 @@ const CONFIGS = {
   lg: { r1: 24, r2: 16, sw: 3 },
 };
 
-export const DoubleRingLoader = memo(({
+export const DoubleRingLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.2,
@@ -47,4 +47,3 @@ export const DoubleRingLoader = memo(({
     </div>
   );
 });
-DoubleRingLoader.displayName = 'DoubleRingLoader';

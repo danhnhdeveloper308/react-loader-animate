@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { LoaderProps, LOADER_SIZES, LOADER_BG_VARIANTS } from './types';
+import { LoaderProps, resolveColorStyle, LOADER_SIZES, LOADER_BG_VARIANTS } from './types';
 
 const PIECES = [
   { x: '0%', y: '-55%', delay: '0s' },
@@ -8,7 +8,7 @@ const PIECES = [
   { x: '-55%', y: '0%', delay: '1.2s' },
 ] as const;
 
-export const CircleSplitLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const CircleSplitLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
   if (!visible) return null;
   const bg = LOADER_BG_VARIANTS[variant];
   return (
@@ -16,7 +16,7 @@ export const CircleSplitLoader = memo(({ size = 'md', variant = 'primary', visib
       role="status"
       aria-label={ariaLabel}
       className={`${LOADER_SIZES[size]} relative ${wrapperClass}`}
-      style={wrapperStyle}
+      style={{ ...wrapperStyle, ...resolveColorStyle(variant, color) }}
     >
       {/* Ghost */}
       <div className={`absolute inset-[10%] ${bg} rounded-full opacity-15`} />
@@ -36,5 +36,3 @@ export const CircleSplitLoader = memo(({ size = 'md', variant = 'primary', visib
     </div>
   );
 });
-
-CircleSplitLoader.displayName = 'CircleSplitLoader';

@@ -7,7 +7,7 @@ const CONFIGS = {
   lg: { size: 60 },
 };
 
-export const PacmanLoader = memo(({
+export const PacmanLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 0.7,
@@ -57,4 +57,3 @@ export const PacmanLoader = memo(({
     </div>
   );
 });
-PacmanLoader.displayName = 'PacmanLoader';

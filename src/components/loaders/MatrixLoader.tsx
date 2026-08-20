@@ -7,21 +7,13 @@ const CONFIGS = {
   lg: { cols: 8, rows: 8, cell: 7, gap: 2 },
 };
 
-const KF = `@keyframes rla-matrix{0%{opacity:0.05;transform:scaleY(0)}50%{opacity:1;transform:scaleY(1)}100%{opacity:0.05;transform:scaleY(0)}}`;
-let inj = false;
-function inject() {
-  if (inj || typeof document === 'undefined') return;
-  const s = document.createElement('style'); s.textContent = KF;
-  document.head.appendChild(s); inj = true;
-}
-
-export const MatrixLoader = memo(({
+export const MatrixLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.5,
 }: LoaderProps) => {
   if (!visible) return null;
-  inject();
+  ;
   const { cols, rows, cell, gap } = CONFIGS[size];
   const c = resolveColor(variant, color);
   return (
@@ -46,4 +38,3 @@ export const MatrixLoader = memo(({
     </div>
   );
 });
-MatrixLoader.displayName = 'MatrixLoader';

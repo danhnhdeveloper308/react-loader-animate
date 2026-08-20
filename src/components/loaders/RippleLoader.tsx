@@ -7,21 +7,13 @@ const CONFIGS = {
   lg: { size: 64, rings: 2 },
 };
 
-const KF = `@keyframes rla-ripple{0%{transform:scale(0);opacity:1}100%{transform:scale(1);opacity:0}}`;
-let injectedRipple = false;
-function inject() {
-  if (injectedRipple || typeof document === 'undefined') return;
-  const s = document.createElement('style'); s.textContent = KF;
-  document.head.appendChild(s); injectedRipple = true;
-}
-
-export const RippleLoader = memo(({
+export const RippleLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'ripple-loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.4,
 }: LoaderProps) => {
   if (!visible) return null;
-  inject();
+  ;
   const { size: s, rings } = CONFIGS[size];
   const c = resolveColor(variant, color);
   return (
@@ -39,4 +31,3 @@ export const RippleLoader = memo(({
     </div>
   );
 });
-RippleLoader.displayName = 'RippleLoader';

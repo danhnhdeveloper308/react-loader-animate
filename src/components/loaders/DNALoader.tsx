@@ -7,7 +7,7 @@ const CONFIGS = {
   lg: { columns: 6, dotPx: 8,  linePx: 18, gapPx: 4 },
 };
 
-export const DNALoader = memo(({
+export const DNALoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'dna-loading', wrapperStyle, wrapperClass = '',
 }: LoaderProps) => {
@@ -37,4 +37,3 @@ export const DNALoader = memo(({
     </div>
   );
 });
-DNALoader.displayName = 'DNALoader';

@@ -1,10 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor } from './types';
 const CONFIGS = { sm:{u:10}, md:{u:14}, lg:{u:18} };
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-iso{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}`;document.head.appendChild(el);}
 export const IsometricLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=1.6}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{u}=CONFIGS[size];const c=resolveColor(variant,color);const w=u*4,h=u*3.5;
   const cx=w/2;
   function isoFace(x:number,y:number,type:'top'|'left'|'right'){
@@ -26,4 +24,3 @@ export const IsometricLoader=memo(({size='md',variant='primary',color,visible=tr
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-IsometricLoader.displayName='IsometricLoader';

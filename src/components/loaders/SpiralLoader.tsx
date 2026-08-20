@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { LoaderProps, LOADER_SIZES } from './types';
+import { LoaderProps, resolveColorStyle, LOADER_SIZES } from './types';
 
 const BORDER_VARIANTS = {
   primary: 'border-t-primary',
@@ -22,14 +22,14 @@ const BORDER_B_VARIANTS = {
   warning: 'border-b-warning'
 } as const;
 
-export const SpiralLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const SpiralLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
   if (!visible) return null;
   return (
     <div
       role="status"
       aria-label={ariaLabel}
       className={`${LOADER_SIZES[size]} relative animate-spin ${wrapperClass}`}
-      style={wrapperStyle}
+      style={{ ...wrapperStyle, ...resolveColorStyle(variant, color) }}
     >
       <div className={`absolute inset-0 rounded-full border-4 border-transparent ${BORDER_VARIANTS[variant]}`} />
       <div className={`absolute inset-1 rounded-full border-4 border-transparent ${BORDER_R_VARIANTS[variant]}`} />
@@ -37,5 +37,3 @@ export const SpiralLoader = memo(({ size = 'md', variant = 'primary', visible = 
     </div>
   );
 });
-
-SpiralLoader.displayName = 'SpiralLoader';

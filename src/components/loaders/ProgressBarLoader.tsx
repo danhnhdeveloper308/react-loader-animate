@@ -7,21 +7,13 @@ const CONFIGS = {
   lg: { w: 80, h: 6 },
 };
 
-const KF = `@keyframes rla-pbar{0%{left:-40%;width:30%}50%{left:30%;width:60%}100%{left:100%;width:30%}}`;
-let inj = false;
-function inject() {
-  if (inj || typeof document === 'undefined') return;
-  const s = document.createElement('style'); s.textContent = KF;
-  document.head.appendChild(s); inj = true;
-}
-
-export const ProgressBarLoader = memo(({
+export const ProgressBarLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.8,
 }: LoaderProps) => {
   if (!visible) return null;
-  inject();
+  ;
   const { w, h } = CONFIGS[size];
   const c = resolveColor(variant, color);
   return (
@@ -39,4 +31,3 @@ export const ProgressBarLoader = memo(({
     </div>
   );
 });
-ProgressBarLoader.displayName = 'ProgressBarLoader';

@@ -1,10 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor } from './types';
 const CONFIGS = { sm:{s:40}, md:{s:56}, lg:{s:72} };
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-rocketbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}@keyframes rla-rocketflame{0%,100%{transform:scaleX(1) scaleY(0.8);opacity:0.9}40%{transform:scaleX(0.85) scaleY(1.25);opacity:1}70%{transform:scaleX(1.1) scaleY(0.95);opacity:0.85}}`;document.head.appendChild(el);}
 export const RocketLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=1.4}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{s}=CONFIGS[size];const c=resolveColor(variant,color);
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
     <svg width={s} height={s} viewBox="0 0 100 100" style={{overflow:'visible'}}>
@@ -31,4 +29,3 @@ export const RocketLoader=memo(({size='md',variant='primary',color,visible=true,
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-RocketLoader.displayName='RocketLoader';

@@ -1,10 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor } from './types';
 const CONFIGS = { sm:{s:40,r:14}, md:{s:56,r:20}, lg:{s:72,r:26} };
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-kaleido{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}@keyframes rla-kaleidoR{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}`;document.head.appendChild(el);}
 export const KaleidoLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=3}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{s,r}=CONFIGS[size];const c=resolveColor(variant,color);const cx=s/2,n=6;
   const petals=Array.from({length:n},(_,i)=>{const a=(i/n)*Math.PI*2;const x=cx+r*Math.cos(a),y=cx+r*Math.sin(a);return{x,y,a:a*180/Math.PI};});
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
@@ -23,4 +21,3 @@ export const KaleidoLoader=memo(({size='md',variant='primary',color,visible=true
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-KaleidoLoader.displayName='KaleidoLoader';

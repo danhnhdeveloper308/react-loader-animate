@@ -5,6 +5,7 @@ import type { Config } from 'tailwindcss';
  * Scans only the loader components so the output stays minimal.
  */
 export default {
+  corePlugins: { preflight: false },
   darkMode: ['class'],
   content: ['./src/components/loaders/**/*.{ts,tsx}'],
   safelist: [

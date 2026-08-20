@@ -7,7 +7,7 @@ const CONFIGS = {
   lg: { w: 80, h: 48, ballR: 6 },
 };
 
-export const ZigzagBallLoader = memo(({
+export const ZigzagBallLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.6,
@@ -59,4 +59,3 @@ export const ZigzagBallLoader = memo(({
     </div>
   );
 });
-ZigzagBallLoader.displayName = 'ZigzagBallLoader';

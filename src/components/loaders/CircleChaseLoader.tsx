@@ -7,7 +7,7 @@ const CONFIGS = {
   lg: { r: 24, dotR: 4.5, count: 10 },
 };
 
-export const CircleChaseLoader = memo(({
+export const CircleChaseLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.8,
@@ -41,4 +41,3 @@ export const CircleChaseLoader = memo(({
     </div>
   );
 });
-CircleChaseLoader.displayName = 'CircleChaseLoader';

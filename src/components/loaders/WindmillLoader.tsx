@@ -7,21 +7,13 @@ const CONFIGS = {
   lg: { size: 56, blades: 8, bladeW: 6, bladeH: 18 },
 };
 
-const KF = `@keyframes rla-windmill{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}`;
-let inj = false;
-function inject() {
-  if (inj || typeof document === 'undefined') return;
-  const s = document.createElement('style'); s.textContent = KF;
-  document.head.appendChild(s); inj = true;
-}
-
-export const WindmillLoader = memo(({
+export const WindmillLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1,
 }: LoaderProps) => {
   if (!visible) return null;
-  inject();
+  ;
   const { size: s, blades, bladeW, bladeH } = CONFIGS[size];
   const c = resolveColor(variant, color);
   const cx = s / 2;
@@ -60,4 +52,3 @@ export const WindmillLoader = memo(({
     </div>
   );
 });
-WindmillLoader.displayName = 'WindmillLoader';

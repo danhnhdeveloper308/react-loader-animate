@@ -7,30 +7,12 @@ const CONFIGS = {
   lg: { size: 68, border: 5 },
 };
 
-let rlaInjGlowRing = false;
-function injectGlowRingKF() {
-  if (rlaInjGlowRing || typeof document === 'undefined') return;
-  rlaInjGlowRing = true;
-  const s = document.createElement('style');
-  s.textContent = `
-    @keyframes rla-glow-ring-pulse {
-      0%,100% { opacity: 1; transform: scale(1); }
-      50%      { opacity: 0.4; transform: scale(0.92); }
-    }
-    @keyframes rla-glow-ring-spin {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-  `;
-  document.head.appendChild(s);
-}
-
-export const GlowRingLoader = memo(({
+export const GlowRingLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.5,
 }: LoaderProps) => {
-  injectGlowRingKF();
+  ;
   if (!visible) return null;
   const { size: s, border: bw } = CONFIGS[size];
   const c = resolveColor(variant, color);
@@ -60,4 +42,3 @@ export const GlowRingLoader = memo(({
     </div>
   );
 });
-GlowRingLoader.displayName = 'GlowRingLoader';

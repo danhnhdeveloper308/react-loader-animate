@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor, resolveSizeClass } from './types';
 
-export const CircularProgressLoader = memo(({
+export const CircularProgressLoader = /* @__PURE__ */ memo(({
   size = 'md',
   variant = 'primary',
   color,
@@ -59,5 +59,3 @@ export const CircularProgressLoader = memo(({
     </div>
   );
 });
-
-CircularProgressLoader.displayName = 'CircularProgressLoader';

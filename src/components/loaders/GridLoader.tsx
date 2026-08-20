@@ -1,14 +1,14 @@
 import { memo } from 'react';
-import { LoaderProps, LOADER_SIZES, LOADER_BG_VARIANTS } from './types';
+import { LoaderProps, resolveColorStyle, LOADER_SIZES, LOADER_BG_VARIANTS } from './types';
 
-export const GridLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const GridLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
   if (!visible) return null;
   return (
     <div
       role="status"
       aria-label={ariaLabel}
       className={`${LOADER_SIZES[size]} grid grid-cols-2 gap-1 ${wrapperClass}`}
-      style={wrapperStyle}
+      style={{ ...wrapperStyle, ...resolveColorStyle(variant, color) }}
     >
       {[0, 1, 2, 3].map((index) => (
         <div
@@ -20,5 +20,3 @@ export const GridLoader = memo(({ size = 'md', variant = 'primary', visible = tr
     </div>
   );
 });
-
-GridLoader.displayName = 'GridLoader';

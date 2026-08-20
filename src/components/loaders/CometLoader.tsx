@@ -7,28 +7,12 @@ const CONFIGS = {
   lg: { size: 72, stroke: 6 },
 };
 
-let rlaInjComet = false;
-function injectCometKF() {
-  if (rlaInjComet || typeof document === 'undefined') return;
-  rlaInjComet = true;
-  const s = document.createElement('style');
-  s.textContent = `
-    @keyframes rla-comet-rot { from { transform: rotate(-90deg); } to { transform: rotate(270deg); } }
-    @keyframes rla-comet-dash {
-      0%   { stroke-dashoffset: 250; }
-      50%  { stroke-dashoffset: 0; }
-      100% { stroke-dashoffset: -250; }
-    }
-  `;
-  document.head.appendChild(s);
-}
-
-export const CometLoader = memo(({
+export const CometLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.4,
 }: LoaderProps) => {
-  injectCometKF();
+  ;
   if (!visible) return null;
   const { size: s, stroke: sw } = CONFIGS[size];
   const c = resolveColor(variant, color);
@@ -58,4 +42,3 @@ export const CometLoader = memo(({
     </div>
   );
 });
-CometLoader.displayName = 'CometLoader';

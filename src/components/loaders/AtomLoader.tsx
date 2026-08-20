@@ -1,7 +1,7 @@
 import { memo } from 'react';
-import { LoaderProps, LOADER_SIZES } from './types';
+import { LoaderProps, resolveColorStyle, LOADER_SIZES } from './types';
 
-export const AtomLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const AtomLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
   if (!visible) return null;
   const colors = {
     primary: 'border-primary',
@@ -21,7 +21,7 @@ export const AtomLoader = memo(({ size = 'md', variant = 'primary', visible = tr
       role="status"
       aria-label={ariaLabel}
       className={`${LOADER_SIZES[size]} relative ${wrapperClass}`}
-      style={wrapperStyle}
+      style={{ ...wrapperStyle, ...resolveColorStyle(variant, color) }}
     >
       {/* Nucleus */}
       <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[15%] h-[15%] ${fills[variant]} rounded-full`} />
@@ -49,5 +49,3 @@ export const AtomLoader = memo(({ size = 'md', variant = 'primary', visible = tr
     </div>
   );
 });
-
-AtomLoader.displayName = 'AtomLoader';

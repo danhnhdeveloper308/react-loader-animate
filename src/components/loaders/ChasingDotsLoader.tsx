@@ -7,7 +7,7 @@ const CONFIGS = {
   lg: { r: 24, dotR: 6.5, count: 3 },
 };
 
-export const ChasingDotsLoader = memo(({
+export const ChasingDotsLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.5,
@@ -42,4 +42,3 @@ export const ChasingDotsLoader = memo(({
     </div>
   );
 });
-ChasingDotsLoader.displayName = 'ChasingDotsLoader';

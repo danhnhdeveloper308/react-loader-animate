@@ -1,7 +1,7 @@
 import { memo } from 'react';
-import { LoaderProps, LOADER_SIZES } from './types';
+import { LoaderProps, resolveColorStyle, LOADER_SIZES } from './types';
 
-export const HourglassLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const HourglassLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
   if (!visible) return null;
   const fills = {
     primary: 'bg-primary',
@@ -14,7 +14,7 @@ export const HourglassLoader = memo(({ size = 'md', variant = 'primary', visible
       role="status"
       aria-label={ariaLabel}
       className={`${LOADER_SIZES[size]} relative animate-[hourglass-flip_2s_ease-in-out_infinite] ${wrapperClass}`}
-      style={wrapperStyle}
+      style={{ ...wrapperStyle, ...resolveColorStyle(variant, color) }}
     >
       {/* Top triangle */}
       <div
@@ -42,5 +42,3 @@ export const HourglassLoader = memo(({ size = 'md', variant = 'primary', visible
     </div>
   );
 });
-
-HourglassLoader.displayName = 'HourglassLoader';

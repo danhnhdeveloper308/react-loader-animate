@@ -1,8 +1,6 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor } from './types';
 const CONFIGS = { sm:{s:60,r1:14,r2:9}, md:{s:80,r1:18,r2:12}, lg:{s:100,r1:23,r2:15} };
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-gearA{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}@keyframes rla-gearB{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}`;document.head.appendChild(el);}
 function gearPath(cx:number,cy:number,rOuter:number,rInner:number,teeth:number):string{
   let d='';
   for(let i=0;i<teeth;i++){
@@ -14,7 +12,7 @@ function gearPath(cx:number,cy:number,rOuter:number,rInner:number,teeth:number):
   return d+'Z';
 }
 export const GearTrainLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=2}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{s,r1,r2}=CONFIGS[size];const c=resolveColor(variant,color);
   const cx1=s*0.33,cx2=s*0.67,cy=s/2;const teeth1=10,teeth2=6;
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
@@ -31,4 +29,3 @@ export const GearTrainLoader=memo(({size='md',variant='primary',color,visible=tr
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-GearTrainLoader.displayName='GearTrainLoader';

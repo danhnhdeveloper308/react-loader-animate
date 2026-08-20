@@ -193,7 +193,9 @@ export { FoldingLoader } from './FoldingLoader';
 export { ConstellationLoader } from './ConstellationLoader';
 
 export type { LoaderProps } from './types';
-export { LOADER_SIZES, LOADER_BG_VARIANTS, LOADER_BORDER_VARIANTS, resolveColor, resolveSizeClass } from './types';
+export { LOADER_SIZES, LOADER_BG_VARIANTS, LOADER_BORDER_VARIANTS, resolveColor, resolveColorStyle, resolveSizeClass } from './types';
+export { CURATED_LOADER_NAMES, CURATED_LOADER_COUNT } from './catalog';
+export type { CuratedLoaderName } from './catalog';
 
 // ── New loaders v8 ── Rotating circles ────────────────────────────────────────
 export { DoubleDotOrbitLoader } from './DoubleDotOrbitLoader';

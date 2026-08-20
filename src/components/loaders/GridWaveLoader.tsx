@@ -7,26 +7,12 @@ const CONFIGS = {
   lg: { cell: 13, gap: 5 },
 };
 
-let rlaInjGridWave = false;
-function injectGridWaveKF() {
-  if (rlaInjGridWave || typeof document === 'undefined') return;
-  rlaInjGridWave = true;
-  const s = document.createElement('style');
-  s.textContent = `
-    @keyframes rla-gridwave {
-      0%,100% { transform: scaleY(0.4); opacity: 0.4; }
-      50%      { transform: scaleY(1.2); opacity: 1; }
-    }
-  `;
-  document.head.appendChild(s);
-}
-
-export const GridWaveLoader = memo(({
+export const GridWaveLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.2,
 }: LoaderProps) => {
-  injectGridWaveKF();
+  ;
   if (!visible) return null;
   const { cell, gap } = CONFIGS[size];
   const cols = 4, rows = 4;
@@ -61,4 +47,3 @@ export const GridWaveLoader = memo(({
     </div>
   );
 });
-GridWaveLoader.displayName = 'GridWaveLoader';

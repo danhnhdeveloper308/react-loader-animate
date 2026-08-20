@@ -7,33 +7,12 @@ const CONFIGS = {
   lg: { size: 64 },
 };
 
-let rlaInjBlob = false;
-function injectBlobKF() {
-  if (rlaInjBlob || typeof document === 'undefined') return;
-  rlaInjBlob = true;
-  const s = document.createElement('style');
-  s.textContent = `
-    @keyframes rla-blob-outer {
-      0%,100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: rotate(0deg); }
-      25%     { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; transform: rotate(90deg); }
-      50%     { border-radius: 50% 60% 30% 60% / 30% 40% 70% 50%; transform: rotate(180deg); }
-      75%     { border-radius: 70% 40% 60% 30% / 40% 70% 30% 60%; transform: rotate(270deg); }
-    }
-    @keyframes rla-blob-inner {
-      0%,100% { border-radius: 40% 60% 60% 40% / 40% 50% 60% 50%; transform: rotate(0deg) scale(1); }
-      33%     { border-radius: 60% 40% 40% 60% / 60% 40% 60% 40%; transform: rotate(-120deg) scale(1.05); }
-      66%     { border-radius: 50% 50% 30% 70% / 70% 30% 60% 40%; transform: rotate(-240deg) scale(0.95); }
-    }
-  `;
-  document.head.appendChild(s);
-}
-
-export const BlobLoader = memo(({
+export const BlobLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 3,
 }: LoaderProps) => {
-  injectBlobKF();
+  ;
   if (!visible) return null;
   const { size: s } = CONFIGS[size];
   const c = resolveColor(variant, color);
@@ -61,4 +40,3 @@ export const BlobLoader = memo(({
     </div>
   );
 });
-BlobLoader.displayName = 'BlobLoader';

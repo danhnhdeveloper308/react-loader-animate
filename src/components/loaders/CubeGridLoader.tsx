@@ -7,23 +7,15 @@ const CONFIGS = {
   lg: { cube: 15, gap: 5 },
 };
 
-const KF = `@keyframes rla-cube-grid{0%,70%,100%{transform:scale3d(1,1,1);opacity:1}35%{transform:scale3d(0,0,1);opacity:0.15}}`;
-let inj = false;
-function inject() {
-  if (inj || typeof document === 'undefined') return;
-  const s = document.createElement('style'); s.textContent = KF;
-  document.head.appendChild(s); inj = true;
-}
-
 const DELAYS = [0.2, 0.3, 0.4, 0.1, 0.2, 0.3, 0, 0.1, 0.2];
 
-export const CubeGridLoader = memo(({
+export const CubeGridLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.3,
 }: LoaderProps) => {
   if (!visible) return null;
-  inject();
+  ;
   const { cube, gap } = CONFIGS[size];
   const c = resolveColor(variant, color);
   return (
@@ -41,4 +33,3 @@ export const CubeGridLoader = memo(({
     </div>
   );
 });
-CubeGridLoader.displayName = 'CubeGridLoader';

@@ -1,10 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor } from './types';
 const CONFIGS={sm:{w:80,h:10},md:{w:120,h:14},lg:{w:160,h:18}};
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}`;document.head.appendChild(el);}
 export const ShimmerLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=1.6}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{w,h}=CONFIGS[size];const c=resolveColor(variant,color);
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
     <div style={{display:'flex',flexDirection:'column',gap:h*0.6}}>
@@ -22,4 +20,3 @@ export const ShimmerLoader=memo(({size='md',variant='primary',color,visible=true
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-ShimmerLoader.displayName='ShimmerLoader';

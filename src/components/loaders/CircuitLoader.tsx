@@ -1,10 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor } from './types';
 const CONFIGS = { sm:{s:40,sw:2}, md:{s:56,sw:2.5}, lg:{s:72,sw:3} };
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-circuit{0%{stroke-dashoffset:320}100%{stroke-dashoffset:0}}@keyframes rla-node{0%,100%{opacity:0.2}50%{opacity:1}}`;document.head.appendChild(el);}
 export const CircuitLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=2}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{s,sw}=CONFIGS[size];const c=resolveColor(variant,color);
   const path="M 15,50 L 30,50 L 30,25 L 50,25 L 50,15 L 70,15 L 70,30 L 85,30 L 85,50 L 70,50 L 70,70 L 55,70 L 55,85 L 35,85 L 35,70 L 15,70 Z";
   const nodes=[[30,50],[50,25],[70,15],[85,30],[70,50],[55,70],[35,85]];
@@ -17,4 +15,3 @@ export const CircuitLoader=memo(({size='md',variant='primary',color,visible=true
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-CircuitLoader.displayName='CircuitLoader';

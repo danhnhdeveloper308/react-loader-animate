@@ -7,28 +7,12 @@ const CONFIGS = {
   lg: { size: 56 },
 };
 
-let rlaInjMorph = false;
-function injectMorphKF() {
-  if (rlaInjMorph || typeof document === 'undefined') return;
-  rlaInjMorph = true;
-  const s = document.createElement('style');
-  s.textContent = `
-    @keyframes rla-morph {
-      0%,100% { border-radius: 50%; transform: rotate(0deg) scale(1); }
-      25% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; transform: rotate(90deg) scale(0.95); }
-      50% { border-radius: 8%; transform: rotate(180deg) scale(1.05); }
-      75% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; transform: rotate(270deg) scale(0.95); }
-    }
-  `;
-  document.head.appendChild(s);
-}
-
-export const MorphLoader = memo(({
+export const MorphLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.8,
 }: LoaderProps) => {
-  injectMorphKF();
+  ;
   if (!visible) return null;
   const { size: s } = CONFIGS[size];
   const c = resolveColor(variant, color);
@@ -44,4 +28,3 @@ export const MorphLoader = memo(({
     </div>
   );
 });
-MorphLoader.displayName = 'MorphLoader';

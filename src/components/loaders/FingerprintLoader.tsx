@@ -7,7 +7,7 @@ const CONFIGS = {
   lg: { size: 56, loops: 6 },
 };
 
-export const FingerprintLoader = memo(({
+export const FingerprintLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 2,
@@ -51,4 +51,3 @@ export const FingerprintLoader = memo(({
     </div>
   );
 });
-FingerprintLoader.displayName = 'FingerprintLoader';

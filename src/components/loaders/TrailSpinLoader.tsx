@@ -7,7 +7,7 @@ const CONFIGS = {
   lg: { r: 24, sw: 5 },
 };
 
-export const TrailSpinLoader = memo(({
+export const TrailSpinLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 0.8,
@@ -53,4 +53,3 @@ export const TrailSpinLoader = memo(({
     </div>
   );
 });
-TrailSpinLoader.displayName = 'TrailSpinLoader';

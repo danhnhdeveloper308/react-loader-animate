@@ -2,17 +2,15 @@ import { memo } from 'react';
 import { LoaderProps, resolveColor, resolveSizeClass } from './types';
 
 const DEFAULT_COLORS = ['#e15b64','#f47e60','#f8b26a','#abbd81','#849b87'];
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-colring{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}`;document.head.appendChild(el);}
 
-export const ColorRingLoader=memo(({
+export const ColorRingLoader=/* @__PURE__ */ memo(({
   size='md',variant='primary',color,colors,className='',
   height,width,ariaLabel='Loading',wrapperStyle,wrapperClass='',
   visible=true,strokeWidth=5,animationDuration=2,
 }:LoaderProps)=>{
-  inject();if(!visible)return null;
-  const palette=colors&&colors.length>=5?colors:DEFAULT_COLORS;
+  ;if(!visible)return null;
   const fallback=resolveColor(variant,color);
+  const palette=colors&&colors.length>=5?colors:color?Array(5).fill(fallback):DEFAULT_COLORS;
   const resolved=palette.map((c,i)=>c??fallback??DEFAULT_COLORS[i]);
   const{sizeClass,sizeStyle}=resolveSizeClass(size,height,width);
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
@@ -30,4 +28,3 @@ export const ColorRingLoader=memo(({
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-ColorRingLoader.displayName='ColorRingLoader';

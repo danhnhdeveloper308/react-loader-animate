@@ -7,21 +7,13 @@ const CONFIGS = {
   lg: { count: 9, barW: 5, maxH: 52 },
 };
 
-const KF = `@keyframes rla-sound{0%,100%{height:20%;opacity:0.4}50%{height:100%;opacity:1}}`;
-let inj = false;
-function inject() {
-  if (inj || typeof document === 'undefined') return;
-  const s = document.createElement('style'); s.textContent = KF;
-  document.head.appendChild(s); inj = true;
-}
-
-export const SoundBarsLoader = memo(({
+export const SoundBarsLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1,
 }: LoaderProps) => {
   if (!visible) return null;
-  inject();
+  ;
   const { count, barW, maxH } = CONFIGS[size];
   const c = resolveColor(variant, color);
   const delays = [0, 0.1, 0.25, 0.07, 0.15, 0.3, 0.05, 0.18, 0.22];
@@ -48,4 +40,3 @@ export const SoundBarsLoader = memo(({
     </div>
   );
 });
-SoundBarsLoader.displayName = 'SoundBarsLoader';

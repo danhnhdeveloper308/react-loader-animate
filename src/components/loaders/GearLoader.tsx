@@ -1,9 +1,9 @@
 import { memo } from 'react';
-import { LoaderProps } from './types';
+import { LoaderProps, resolveColorStyle } from './types';
 
 const SIZE_MAP = { sm: 'w-8 h-8', md: 'w-12 h-12', lg: 'w-16 h-16' };
 
-export const GearLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const GearLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
   if (!visible) return null;
   const fill = {
     primary: 'fill-primary',
@@ -12,7 +12,7 @@ export const GearLoader = memo(({ size = 'md', variant = 'primary', visible = tr
     warning: 'fill-warning',
   };
   return (
-    <div role="status" aria-label={ariaLabel} className={wrapperClass} style={{ display: 'inline-flex', ...wrapperStyle }}>
+    <div role="status" aria-label={ariaLabel} className={wrapperClass} style={{ display: 'inline-flex', ...wrapperStyle, ...resolveColorStyle(variant, color) }}>
       <svg className={`${SIZE_MAP[size]} animate-spin-slow`} viewBox="0 0 24 24">
         <path
           className={fill[variant]}
@@ -22,5 +22,3 @@ export const GearLoader = memo(({ size = 'md', variant = 'primary', visible = tr
     </div>
   );
 });
-
-GearLoader.displayName = 'GearLoader';

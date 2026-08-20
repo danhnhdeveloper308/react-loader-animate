@@ -7,29 +7,12 @@ const CONFIGS = {
   lg: { size: 68, stroke: 5 },
 };
 
-let rlaInjChaseRing = false;
-function injectChaseRingKF() {
-  if (rlaInjChaseRing || typeof document === 'undefined') return;
-  rlaInjChaseRing = true;
-  const s = document.createElement('style');
-  s.textContent = `
-    @keyframes rla-chase-a { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    @keyframes rla-chase-b { from { transform: rotate(180deg); } to { transform: rotate(540deg); } }
-    @keyframes rla-chase-trail { 
-      0%   { opacity: 1; r: 4; }
-      50%  { opacity: 0.4; r: 2.5; }
-      100% { opacity: 1; r: 4; }
-    }
-  `;
-  document.head.appendChild(s);
-}
-
-export const ChaseRingLoader = memo(({
+export const ChaseRingLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.6,
 }: LoaderProps) => {
-  injectChaseRingKF();
+  ;
   if (!visible) return null;
   const { size: s, stroke: sw } = CONFIGS[size];
   const c = resolveColor(variant, color);
@@ -55,4 +38,3 @@ export const ChaseRingLoader = memo(({
     </div>
   );
 });
-ChaseRingLoader.displayName = 'ChaseRingLoader';

@@ -1,6 +1,6 @@
 # react-loader-animate
 
-> A collection of **192+ animated loading components** built with React, TypeScript, and Tailwind CSS — lightweight, tree-shakable, and fully customizable.
+> **112 curated React loaders** with modern motion, accessible defaults, TypeScript types, dark-mode tokens, and lightweight tree-shakeable imports.
 
 [![npm version](https://img.shields.io/npm/v/react-loader-animate?color=CB3837&logo=npm&label=npm)](https://www.npmjs.com/package/react-loader-animate)
 [![npm downloads](https://img.shields.io/npm/dm/react-loader-animate?color=CB3837&logo=npm)](https://www.npmjs.com/package/react-loader-animate)
@@ -13,14 +13,14 @@
 
 ## ✨ Features
 
-- 🎨 **192+ loader animations** — spin, pulse, wave, orbit, DNA, hourglass, and more
+- 🎨 **112 curated animations** — selected from a visual and technical audit of 190 loaders
 - 📐 **3 built-in sizes** — `sm`, `md`, `lg`
 - 🎭 **4 colour variants** — `primary`, `accent`, `success`, `warning`
 - 🖌️ **Full customisation** — `color`, `height`, `width`, `animationDuration`, `strokeWidth`, `colors[]`
 - ♿ **Accessible** — `role="status"`, `aria-label`, `visible` prop for screen-reader-friendly hiding
-- ⚡ **Performance-first** — every component wrapped in `React.memo`, zero runtime dependencies
+- ⚡ **Performance-first** — 591 B gzip for a production `SpinLoader` import, zero runtime dependencies
 - 🌗 **Dark mode** — CSS custom properties, works with any theming strategy
-- 🌲 **Tree-shakable** — import only what you use; unused loaders are eliminated at build time
+- 🌲 **Tree-shakable** — root named imports and explicit per-loader subpaths
 - 🔧 **TypeScript** — complete type definitions included
 
 ---
@@ -38,7 +38,7 @@ pnpm add react-loader-animate
 yarn add react-loader-animate
 ```
 
-**Peer dependencies:** `react >= 17`, `react-dom >= 17`
+**Peer dependencies:** `react >= 16.14`, `react-dom >= 16.14`
 
 ---
 
@@ -48,7 +48,7 @@ yarn add react-loader-animate
 
 ```tsx
 // main.tsx / _app.tsx
-import 'react-loader-animate/dist/index.css';
+import 'react-loader-animate/style.css';
 ```
 
 ### Option 2 — Tailwind CSS preset (recommended)
@@ -82,6 +82,14 @@ export default function App() {
 }
 ```
 
+For the most explicit minimal entry, use a per-loader subpath:
+
+```tsx
+import { SpinLoader } from 'react-loader-animate/loaders/SpinLoader';
+```
+
+Both import forms measure 591 B gzip in the automated package size check.
+
 ---
 
 ## 🎛️ Props
@@ -107,6 +115,8 @@ All components share a common `LoaderProps` interface:
 ---
 
 ## 🧩 Component Catalogue
+
+The documentation gallery contains the 112 recommended, visually distinct loaders. Older root exports remain available for backward compatibility and may be deprecated in a future major release.
 
 ### Basic & Spinner
 `SpinLoader` · `DotsLoader` · `PulseLoader` · `WaveLoader` · `GradientSpinner` · `RingLoader` · `BarLoader` · `TypingDotsLoader` · `SyncLoader` · `BarsLoader` · `RotatingLoader`

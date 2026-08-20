@@ -7,26 +7,12 @@ const CONFIGS = {
   lg: { cell: 14, gap: 6 },
 };
 
-let rlaInjGridBounce = false;
-function injectGridBounceKF() {
-  if (rlaInjGridBounce || typeof document === 'undefined') return;
-  rlaInjGridBounce = true;
-  const s = document.createElement('style');
-  s.textContent = `
-    @keyframes rla-gridbounce {
-      0%,80%,100% { transform: scale(0.6); opacity: 0.35; }
-      40%          { transform: scale(1.15); opacity: 1; }
-    }
-  `;
-  document.head.appendChild(s);
-}
-
-export const GridBounceLoader = memo(({
+export const GridBounceLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.4,
 }: LoaderProps) => {
-  injectGridBounceKF();
+  ;
   if (!visible) return null;
   const { cell, gap } = CONFIGS[size];
   const cols = 3;
@@ -60,4 +46,3 @@ export const GridBounceLoader = memo(({
     </div>
   );
 });
-GridBounceLoader.displayName = 'GridBounceLoader';

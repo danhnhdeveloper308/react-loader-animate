@@ -7,28 +7,12 @@ const CONFIGS = {
   lg: { cell: 12, gap: 5 },
 };
 
-let rlaInjGridRain = false;
-function injectGridRainKF() {
-  if (rlaInjGridRain || typeof document === 'undefined') return;
-  rlaInjGridRain = true;
-  const s = document.createElement('style');
-  s.textContent = `
-    @keyframes rla-gridrain {
-      0%    { opacity: 0;   transform: translateY(-4px); }
-      20%   { opacity: 1;   transform: translateY(0); }
-      80%   { opacity: 0.7; transform: translateY(0); }
-      100%  { opacity: 0;   transform: translateY(4px); }
-    }
-  `;
-  document.head.appendChild(s);
-}
-
-export const GridRainLoader = memo(({
+export const GridRainLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.2,
 }: LoaderProps) => {
-  injectGridRainKF();
+  ;
   if (!visible) return null;
   const { cell, gap } = CONFIGS[size];
   const cols = 4, rows = 5;
@@ -61,4 +45,3 @@ export const GridRainLoader = memo(({
     </div>
   );
 });
-GridRainLoader.displayName = 'GridRainLoader';

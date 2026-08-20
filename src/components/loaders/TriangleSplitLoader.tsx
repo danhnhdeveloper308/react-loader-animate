@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { LoaderProps, LOADER_SIZES, LOADER_BG_VARIANTS } from './types';
+import { LoaderProps, resolveColorStyle, LOADER_SIZES, LOADER_BG_VARIANTS } from './types';
 
 const TRIANGLE_CLIP = 'polygon(50% 0%, 0% 100%, 100% 100%)';
 
@@ -9,7 +9,7 @@ const PIECES = [
   { x: '45%', y: '40%', delay: '1s' },
 ] as const;
 
-export const TriangleSplitLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const TriangleSplitLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
   if (!visible) return null;
   const bg = LOADER_BG_VARIANTS[variant];
   return (
@@ -17,7 +17,7 @@ export const TriangleSplitLoader = memo(({ size = 'md', variant = 'primary', vis
       role="status"
       aria-label={ariaLabel}
       className={`${LOADER_SIZES[size]} relative ${wrapperClass}`}
-      style={wrapperStyle}
+      style={{ ...wrapperStyle, ...resolveColorStyle(variant, color) }}
     >
       {/* Ghost */}
       <div className={`absolute inset-[5%] ${bg} opacity-15`} style={{ clipPath: TRIANGLE_CLIP }} />
@@ -38,5 +38,3 @@ export const TriangleSplitLoader = memo(({ size = 'md', variant = 'primary', vis
     </div>
   );
 });
-
-TriangleSplitLoader.displayName = 'TriangleSplitLoader';

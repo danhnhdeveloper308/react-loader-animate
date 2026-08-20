@@ -1,10 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor } from './types';
 const CONFIGS={sm:{w:32,h:52},md:{w:42,h:68},lg:{w:54,h:84}};
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-helixflow{from{stroke-dashoffset:80}to{stroke-dashoffset:0}}`;document.head.appendChild(el);}
 export const HelixLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=1.4}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{w,h}=CONFIGS[size];const c=resolveColor(variant,color);
   const n=6;const step=h/n;const L=w*0.1,R=w*0.9,MX=w/2;
   // Build two sinusoidal strands that cross each other
@@ -37,4 +35,3 @@ export const HelixLoader=memo(({size='md',variant='primary',color,visible=true,a
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-HelixLoader.displayName='HelixLoader';

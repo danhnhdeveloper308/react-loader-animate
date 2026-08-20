@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor, resolveSizeClass } from './types';
 
-export const BallTriangleLoader = memo(({
+export const BallTriangleLoader = /* @__PURE__ */ memo(({
   size = 'md',
   variant = 'primary',
   color,
@@ -64,5 +64,3 @@ export const BallTriangleLoader = memo(({
     </div>
   );
 });
-
-BallTriangleLoader.displayName = 'BallTriangleLoader';

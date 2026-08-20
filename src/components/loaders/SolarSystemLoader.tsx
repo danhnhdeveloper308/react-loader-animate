@@ -7,25 +7,12 @@ const CONFIGS = {
   lg: { size: 72 },
 };
 
-let rlaInjSolar = false;
-function injectSolarKF() {
-  if (rlaInjSolar || typeof document === 'undefined') return;
-  rlaInjSolar = true;
-  const s = document.createElement('style');
-  s.textContent = `
-    @keyframes rla-solar-1 { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    @keyframes rla-solar-2 { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
-    @keyframes rla-solar-3 { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-  `;
-  document.head.appendChild(s);
-}
-
-export const SolarSystemLoader = memo(({
+export const SolarSystemLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 2,
 }: LoaderProps) => {
-  injectSolarKF();
+  ;
   if (!visible) return null;
   const { size: s } = CONFIGS[size];
   const c = resolveColor(variant, color);
@@ -60,4 +47,3 @@ export const SolarSystemLoader = memo(({
     </div>
   );
 });
-SolarSystemLoader.displayName = 'SolarSystemLoader';

@@ -7,21 +7,13 @@ const CONFIGS = {
   lg: { w: 80, barH: 7, gap: 5, count: 4 },
 };
 
-const KF = `@keyframes rla-hbar{0%,100%{width:20%;opacity:0.3}50%{width:100%;opacity:1}}`;
-let inj = false;
-function inject() {
-  if (inj || typeof document === 'undefined') return;
-  const s = document.createElement('style'); s.textContent = KF;
-  document.head.appendChild(s); inj = true;
-}
-
-export const HorizontalBarsLoader = memo(({
+export const HorizontalBarsLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.2,
 }: LoaderProps) => {
   if (!visible) return null;
-  inject();
+  ;
   const { w, barH, gap, count } = CONFIGS[size];
   const c = resolveColor(variant, color);
   return (
@@ -41,4 +33,3 @@ export const HorizontalBarsLoader = memo(({
     </div>
   );
 });
-HorizontalBarsLoader.displayName = 'HorizontalBarsLoader';

@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { LoaderProps, LOADER_SIZES, LOADER_BG_VARIANTS } from './types';
+import { LoaderProps, resolveColorStyle, LOADER_SIZES, LOADER_BG_VARIANTS } from './types';
 
 const DOT_SIZES = {
   sm: 'w-2 h-2',
@@ -7,7 +7,7 @@ const DOT_SIZES = {
   lg: 'w-4 h-4'
 } as const;
 
-export const OrbitLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const OrbitLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
   if (!visible) return null;
   const dot = DOT_SIZES[size];
   const bg = LOADER_BG_VARIANTS[variant];
@@ -17,7 +17,7 @@ export const OrbitLoader = memo(({ size = 'md', variant = 'primary', visible = t
       role="status"
       aria-label={ariaLabel}
       className={`${LOADER_SIZES[size]} relative animate-spin ${wrapperClass}`}
-      style={wrapperStyle}
+      style={{ ...wrapperStyle, ...resolveColorStyle(variant, color) }}
     >
       <div className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 ${dot} rounded-full ${bg}`} />
       <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 ${dot} rounded-full ${bg} opacity-50`} />
@@ -26,5 +26,3 @@ export const OrbitLoader = memo(({ size = 'md', variant = 'primary', visible = t
     </div>
   );
 });
-
-OrbitLoader.displayName = 'OrbitLoader';

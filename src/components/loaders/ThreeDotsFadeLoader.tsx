@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor, resolveSizeClass } from './types';
 
-export const ThreeDotsFadeLoader = memo(({
+export const ThreeDotsFadeLoader = /* @__PURE__ */ memo(({
   size = 'md',
   variant = 'primary',
   color,
@@ -54,5 +54,3 @@ export const ThreeDotsFadeLoader = memo(({
     </div>
   );
 });
-
-ThreeDotsFadeLoader.displayName = 'ThreeDotsFadeLoader';

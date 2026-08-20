@@ -1,10 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor } from './types';
 const CONFIGS = { sm:{s:40}, md:{s:56}, lg:{s:72} };
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-liquid{0%{transform:translateY(0%)}100%{transform:translateY(-100%)}}@keyframes rla-wave{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}`;document.head.appendChild(el);}
 export const LiquidFillLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=2}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{s}=CONFIGS[size];const c=resolveColor(variant,color);
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
     <div style={{position:'relative',width:s,height:s,borderRadius:'50%',overflow:'hidden',border:`2px solid ${c}`,boxSizing:'border-box'}}>
@@ -21,4 +19,3 @@ export const LiquidFillLoader=memo(({size='md',variant='primary',color,visible=t
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-LiquidFillLoader.displayName='LiquidFillLoader';

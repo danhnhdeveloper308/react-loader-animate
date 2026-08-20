@@ -1,10 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor } from './types';
 const CONFIGS = { sm:{s:32,b:3}, md:{s:48,b:4}, lg:{s:64,b:5} };
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-neonsp{from{transform:rotate(0)}to{transform:rotate(360deg)}}@keyframes rla-neonglow{0%,100%{opacity:1}50%{opacity:0.5}}`;document.head.appendChild(el);}
 export const NeonSpinLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=1}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{s,b}=CONFIGS[size];const c=resolveColor(variant,color);
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
     <div style={{position:'relative',width:s,height:s}}>
@@ -14,4 +12,3 @@ export const NeonSpinLoader=memo(({size='md',variant='primary',color,visible=tru
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-NeonSpinLoader.displayName='NeonSpinLoader';

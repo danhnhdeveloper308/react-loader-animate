@@ -1,10 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor } from './types';
 const CONFIGS = { sm:{s:36,sw:4}, md:{s:52,sw:5}, lg:{s:68,sw:6} };
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-arcA{from{transform:rotate(-90deg)}to{transform:rotate(270deg)}}@keyframes rla-arcB{from{transform:rotate(90deg)}to{transform:rotate(-270deg)}}`;document.head.appendChild(el);}
 export const ArcSpinLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=1.4}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{s,sw}=CONFIGS[size];const c=resolveColor(variant,color);const cx=s/2,r1=cx-sw,r2=cx-sw*2.8;
   const c1=2*Math.PI*r1,c2=2*Math.PI*r2;
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
@@ -15,4 +13,3 @@ export const ArcSpinLoader=memo(({size='md',variant='primary',color,visible=true
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-ArcSpinLoader.displayName='ArcSpinLoader';

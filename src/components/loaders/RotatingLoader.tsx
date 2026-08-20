@@ -3,7 +3,7 @@ import { LoaderProps, resolveColor } from './types';
 
 const SIZES = { sm: 32, md: 48, lg: 64 };
 
-export const RotatingLoader = memo(({
+export const RotatingLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'rotating-loading', wrapperStyle, wrapperClass = '',
   strokeWidth = 4, animationDuration = 1,
@@ -65,4 +65,3 @@ export const RotatingLoader = memo(({
     </div>
   );
 });
-RotatingLoader.displayName = 'RotatingLoader';

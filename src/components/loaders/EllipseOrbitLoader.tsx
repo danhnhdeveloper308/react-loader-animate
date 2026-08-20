@@ -1,9 +1,7 @@
 import{memo}from'react';import{LoaderProps,resolveColor}from'./types';
 const CONFIGS={sm:{s:48},md:{s:64},lg:{s:80}};
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-eo1{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}@keyframes rla-eo2{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}`;document.head.appendChild(el);}
 export const EllipseOrbitLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=2}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{s}=CONFIGS[size];const c=resolveColor(variant,color);
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
     <svg width={s} height={s} viewBox={`0 0 ${s} ${s}`}>
@@ -21,4 +19,3 @@ export const EllipseOrbitLoader=memo(({size='md',variant='primary',color,visible
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-EllipseOrbitLoader.displayName='EllipseOrbitLoader';

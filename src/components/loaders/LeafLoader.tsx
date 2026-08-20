@@ -1,10 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor } from './types';
 const CONFIGS = { sm:{s:36}, md:{s:52}, lg:{s:68} };
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-leaf{0%{transform:rotate(-20deg)}25%{transform:rotate(10deg)}50%{transform:rotate(-15deg)}75%{transform:rotate(8deg)}100%{transform:rotate(-20deg)}}@keyframes rla-leaffall{0%,100%{transform:translateY(0) rotate(-20deg)}50%{transform:translateY(-6px) rotate(5deg)}}`;document.head.appendChild(el);}
 export const LeafLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=2}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{s}=CONFIGS[size];const c=resolveColor(variant,color);
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
     <svg width={s} height={s} viewBox="0 0 100 100">
@@ -18,4 +16,3 @@ export const LeafLoader=memo(({size='md',variant='primary',color,visible=true,ar
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-LeafLoader.displayName='LeafLoader';

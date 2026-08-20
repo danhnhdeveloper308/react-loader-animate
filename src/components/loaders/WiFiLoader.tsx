@@ -7,7 +7,7 @@ const CONFIGS = {
   lg: { w: 48, h: 40, sw: 4 },
 };
 
-export const WiFiLoader = memo(({
+export const WiFiLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.4,
@@ -56,4 +56,3 @@ export const WiFiLoader = memo(({
     </div>
   );
 });
-WiFiLoader.displayName = 'WiFiLoader';

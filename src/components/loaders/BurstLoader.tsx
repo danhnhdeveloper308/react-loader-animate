@@ -1,9 +1,7 @@
 import{memo}from'react';import{LoaderProps,resolveColor}from'./types';
 const CONFIGS={sm:{s:44},md:{s:60},lg:{s:76}};
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-burstp0{0%,100%{transform:translate(0,0);opacity:1}50%{transform:translate(-20px,-12px);opacity:0.25}}@keyframes rla-burstp1{0%,100%{transform:translate(0,0);opacity:1}50%{transform:translate(0px,-22px);opacity:0.25}}@keyframes rla-burstp2{0%,100%{transform:translate(0,0);opacity:1}50%{transform:translate(20px,-12px);opacity:0.25}}@keyframes rla-burstp3{0%,100%{transform:translate(0,0);opacity:1}50%{transform:translate(20px,12px);opacity:0.25}}@keyframes rla-burstp4{0%,100%{transform:translate(0,0);opacity:1}50%{transform:translate(0px,22px);opacity:0.25}}@keyframes rla-burstp5{0%,100%{transform:translate(0,0);opacity:1}50%{transform:translate(-20px,12px);opacity:0.25}}`;document.head.appendChild(el);}
 export const BurstLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=1.8}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{s}=CONFIGS[size];const c=resolveColor(variant,color);const n=6;const d=s*0.14;const r=s*0.32;const cx=s/2;
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
     <svg width={s} height={s} viewBox={`0 0 ${s} ${s}`}>
@@ -17,4 +15,3 @@ export const BurstLoader=memo(({size='md',variant='primary',color,visible=true,a
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-BurstLoader.displayName='BurstLoader';

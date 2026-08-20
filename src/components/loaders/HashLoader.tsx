@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor, resolveSizeClass } from './types';
 
-export const HashLoader = memo(({
+export const HashLoader = /* @__PURE__ */ memo(({
   size = 'md',
   variant = 'primary',
   color,
@@ -55,5 +55,3 @@ export const HashLoader = memo(({
     </div>
   );
 });
-
-HashLoader.displayName = 'HashLoader';

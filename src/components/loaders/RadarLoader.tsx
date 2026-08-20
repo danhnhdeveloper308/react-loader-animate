@@ -1,7 +1,7 @@
 import { memo } from 'react';
-import { LoaderProps, LOADER_SIZES } from './types';
+import { LoaderProps, resolveColorStyle, LOADER_SIZES } from './types';
 
-export const RadarLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const RadarLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
   if (!visible) return null;
   const colors = {
     primary: 'border-primary',
@@ -20,7 +20,7 @@ export const RadarLoader = memo(({ size = 'md', variant = 'primary', visible = t
       role="status"
       aria-label={ariaLabel}
       className={`${LOADER_SIZES[size]} relative ${wrapperClass}`}
-      style={wrapperStyle}
+      style={{ ...wrapperStyle, ...resolveColorStyle(variant, color) }}
     >
       {/* Concentric rings */}
       {[100, 70, 40].map((pct, i) => (
@@ -54,5 +54,3 @@ export const RadarLoader = memo(({ size = 'md', variant = 'primary', visible = t
     </div>
   );
 });
-
-RadarLoader.displayName = 'RadarLoader';

@@ -7,7 +7,7 @@ const CONFIGS = {
   lg: { r: 24, sw: 3 },
 };
 
-export const DashLoader = memo(({
+export const DashLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.5,
@@ -44,4 +44,3 @@ export const DashLoader = memo(({
     </div>
   );
 });
-DashLoader.displayName = 'DashLoader';

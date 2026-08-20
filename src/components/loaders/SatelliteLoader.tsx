@@ -1,10 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor } from './types';
 const CONFIGS = { sm:{s:40,dr:3}, md:{s:56,dr:4}, lg:{s:72,dr:5} };
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-satA{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}@keyframes rla-satB{from{transform:rotate(0deg)}to{transform:rotate(-360deg)}}`;document.head.appendChild(el);}
 export const SatelliteLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=1.8}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{s,dr}=CONFIGS[size];const c=resolveColor(variant,color);const cx=s/2;
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
     <svg width={s} height={s} viewBox={`0 0 ${s} ${s}`}>
@@ -20,4 +18,3 @@ export const SatelliteLoader=memo(({size='md',variant='primary',color,visible=tr
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-SatelliteLoader.displayName='SatelliteLoader';

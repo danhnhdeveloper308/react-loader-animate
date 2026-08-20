@@ -4,7 +4,12 @@
   "type": "module",
   "scripts": {
     "lint": "eslint .",
-    "build:lib": "tsup && tsc --project tsconfig.lib.json",
+    "typecheck": "tsc --project tsconfig.lib.json --noEmit",
+    "size": "node scripts/check-bundle-size.mjs",
+    "test:contracts": "node scripts/check-loader-contracts.mjs",
+    "test:ssr": "node scripts/check-ssr.mjs",
+    "test": "npm run test:contracts && npm run test:ssr && npm run size",
+    "build:lib": "tsup && node scripts/write-esm-barrel.mjs",
     "build:css": "tailwindcss --config tailwind.lib.config.ts -i src/lib/styles.css -o dist/style.css --minify",
     "build": "npm run build:lib && npm run build:css",
     "prepublishOnly": "npm run build"
@@ -22,8 +27,11 @@
     "conventional-changelog-conventionalcommits": "^9.3.1",
     "eslint": "^9.32.0",
     "eslint-plugin-react-hooks": "^5.2.0",
+    "esbuild": "^0.27.7",
     "globals": "^17.4.0",
     "postcss": "^8.5.6",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "semantic-release": "^25.0.3",
     "tailwindcss": "^3.4.17",
     "tailwindcss-animate": "^1.0.7",
@@ -31,40 +39,98 @@
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.38.0"
   },
-  "description": "192+ beautiful, performant React loading animation components",
+  "description": "112 curated, accessible and lightweight animated React loaders for Next.js, Vite and Remix",
   "keywords": [
     "react",
     "loader",
+    "react loader",
+    "react spinner",
+    "loading indicator",
+    "loading animation",
     "animation",
     "spinner",
     "loading",
-    "typescript"
+    "typescript",
+    "nextjs",
+    "vite",
+    "remix",
+    "accessible",
+    "tree-shakeable"
   ],
   "license": "MIT",
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "react": ">=16.14.0",
+    "react-dom": ">=16.14.0",
+    "tailwindcss": ">=3 <5"
+  },
+  "peerDependenciesMeta": {
+    "tailwindcss": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=16"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
-  "types": "./dist/lib/index.d.ts",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/lib/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./loaders/*": {
+      "import": {
+        "types": "./dist/loaders/*.d.ts",
+        "default": "./dist/loaders/*.js"
+      },
+      "require": {
+        "types": "./dist/loaders/*.d.cts",
+        "default": "./dist/loaders/*.cjs"
+      }
+    },
+    "./catalog": {
+      "import": {
+        "types": "./dist/catalog.d.ts",
+        "default": "./dist/catalog.js"
+      },
+      "require": {
+        "types": "./dist/catalog.d.cts",
+        "default": "./dist/catalog.cjs"
+      }
     },
     "./style.css": "./dist/style.css",
-    "./tailwind.preset": "./tailwind.preset.ts"
+    "./tailwind.preset": {
+      "import": {
+        "types": "./dist/tailwind-preset.d.ts",
+        "default": "./dist/tailwind-preset.js"
+      },
+      "require": {
+        "types": "./dist/tailwind-preset.d.cts",
+        "default": "./dist/tailwind-preset.cjs"
+      }
+    }
   },
   "files": [
-    "dist",
-    "tailwind.preset.ts"
+    "dist"
   ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "homepage": "https://danhnhdeveloper308.github.io/react-loader-animate-docs/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/danhnhdeveloper308/react-loader-animate"
+    "url": "git+https://github.com/danhnhdeveloper308/react-loader-animate.git"
   },
   "bugs": {
     "url": "https://github.com/danhnhdeveloper308/react-loader-animate/issues"

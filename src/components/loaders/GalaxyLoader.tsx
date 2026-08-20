@@ -7,7 +7,7 @@ const CONFIGS = {
   lg: { size: 64, stars: 20 },
 };
 
-export const GalaxyLoader = memo(({
+export const GalaxyLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 3,
@@ -58,4 +58,3 @@ export const GalaxyLoader = memo(({
     </div>
   );
 });
-GalaxyLoader.displayName = 'GalaxyLoader';

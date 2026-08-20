@@ -1,10 +1,8 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor } from './types';
 const CONFIGS = { sm:{s:40}, md:{s:56}, lg:{s:72} };
-let inj=false;
-function inject(){if(inj||typeof document==='undefined')return;inj=true;const el=document.createElement('style');el.textContent=`@keyframes rla-chV{0%,100%{transform:translateY(-6px)}50%{transform:translateY(6px)}}@keyframes rla-chH{0%,100%{transform:translateX(-6px)}50%{transform:translateX(6px)}}@keyframes rla-chspin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}`;document.head.appendChild(el);}
 export const CrosshairLoader=memo(({size='md',variant='primary',color,visible=true,ariaLabel='loading',wrapperStyle,wrapperClass='',animationDuration=1.6}:LoaderProps)=>{
-  inject();if(!visible)return null;
+  ;if(!visible)return null;
   const{s}=CONFIGS[size];const c=resolveColor(variant,color);const cx=s/2,r=cx*0.82;
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
     <svg width={s} height={s} viewBox={`0 0 ${s} ${s}`}>
@@ -21,4 +19,3 @@ export const CrosshairLoader=memo(({size='md',variant='primary',color,visible=tr
     <span className="sr-only">{ariaLabel}</span>
   </div>);
 });
-CrosshairLoader.displayName='CrosshairLoader';

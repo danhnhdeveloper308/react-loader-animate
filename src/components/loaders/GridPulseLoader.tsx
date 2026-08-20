@@ -7,20 +7,6 @@ const CONFIGS = {
   lg: { cell: 14, gap: 6 },
 };
 
-let rlaInjGridPulse = false;
-function injectGridPulseKF() {
-  if (rlaInjGridPulse || typeof document === 'undefined') return;
-  rlaInjGridPulse = true;
-  const s = document.createElement('style');
-  s.textContent = `
-    @keyframes rla-gridpulse {
-      0%,100% { opacity: 0.15; transform: scale(0.75); }
-      50%      { opacity: 1;    transform: scale(1); }
-    }
-  `;
-  document.head.appendChild(s);
-}
-
 // 3x3 grid — cells pulse outward from center
 const DIST = [
   [1.41, 1, 1.41],
@@ -28,12 +14,12 @@ const DIST = [
   [1.41, 1, 1.41],
 ];
 
-export const GridPulseLoader = memo(({
+export const GridPulseLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.6,
 }: LoaderProps) => {
-  injectGridPulseKF();
+  ;
   if (!visible) return null;
   const { cell, gap } = CONFIGS[size];
   const c = resolveColor(variant, color);
@@ -58,4 +44,3 @@ export const GridPulseLoader = memo(({
     </div>
   );
 });
-GridPulseLoader.displayName = 'GridPulseLoader';

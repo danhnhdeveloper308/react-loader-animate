@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColor, resolveSizeClass } from './types';
 
-export const RingLoader = memo(({
+export const RingLoader = /* @__PURE__ */ memo(({
   size = 'md',
   variant = 'primary',
   color,
@@ -45,4 +45,3 @@ export const RingLoader = memo(({
     </div>
   );
 });
-RingLoader.displayName = 'RingLoader';

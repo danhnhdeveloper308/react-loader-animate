@@ -1,9 +1,9 @@
 import { memo } from 'react';
-import { LoaderProps } from './types';
+import { LoaderProps, resolveColorStyle } from './types';
 
 const SIZE_MAP = { sm: 'w-10 h-5', md: 'w-16 h-8', lg: 'w-20 h-10' };
 
-export const InfinityLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const InfinityLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
   if (!visible) return null;
   const stroke = {
     primary: 'stroke-primary',
@@ -12,7 +12,7 @@ export const InfinityLoader = memo(({ size = 'md', variant = 'primary', visible 
     warning: 'stroke-warning',
   };
   return (
-    <div role="status" aria-label={ariaLabel} className={wrapperClass} style={{ display: 'inline-flex', ...wrapperStyle }}>
+    <div role="status" aria-label={ariaLabel} className={wrapperClass} style={{ display: 'inline-flex', ...wrapperStyle, ...resolveColorStyle(variant, color) }}>
       <svg className={`${SIZE_MAP[size]}`} viewBox="0 0 100 50">
         <path
           className={`${stroke[variant]} fill-none animate-infinity-draw`}
@@ -25,5 +25,3 @@ export const InfinityLoader = memo(({ size = 'md', variant = 'primary', visible 
     </div>
   );
 });
-
-InfinityLoader.displayName = 'InfinityLoader';

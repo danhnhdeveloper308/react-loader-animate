@@ -3,7 +3,7 @@ import { LoaderProps, resolveColor } from './types';
 
 const DOT_SIZES = { sm: 6, md: 10, lg: 14 } as const;
 
-export const DotsLoader = memo(({
+export const DotsLoader = /* @__PURE__ */ memo(({
   size = 'md',
   variant = 'primary',
   color,
@@ -43,5 +43,3 @@ export const DotsLoader = memo(({
     </div>
   );
 });
-
-DotsLoader.displayName = 'DotsLoader';

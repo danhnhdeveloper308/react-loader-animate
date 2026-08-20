@@ -1,7 +1,7 @@
 import { memo } from 'react';
-import { LoaderProps } from './types';
+import { LoaderProps, resolveColorStyle } from './types';
 
-export const PendulumLoader = memo(({ size = 'md', variant = 'primary', visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const PendulumLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
   if (!visible) return null;
   const fills = {
     primary: 'bg-primary',
@@ -17,7 +17,7 @@ export const PendulumLoader = memo(({ size = 'md', variant = 'primary', visible 
       role="status"
       aria-label={ariaLabel}
       className={`${containers[size]} relative ${wrapperClass}`}
-      style={wrapperStyle}
+      style={{ ...wrapperStyle, ...resolveColorStyle(variant, color) }}
     >
       {/* 5 balls in a row */}
       {[0, 1, 2, 3, 4].map((i) => (
@@ -37,5 +37,3 @@ export const PendulumLoader = memo(({ size = 'md', variant = 'primary', visible 
     </div>
   );
 });
-
-PendulumLoader.displayName = 'PendulumLoader';

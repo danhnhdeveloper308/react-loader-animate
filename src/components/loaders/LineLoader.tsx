@@ -7,7 +7,7 @@ const CONFIGS = {
   lg: { w: 80, h: 5 },
 };
 
-export const LineLoader = memo(({
+export const LineLoader = /* @__PURE__ */ memo(({
   size = 'md', variant = 'primary', color, visible = true,
   ariaLabel = 'loading', wrapperStyle, wrapperClass = '',
   animationDuration = 1.6,
@@ -39,4 +39,3 @@ export const LineLoader = memo(({
     </div>
   );
 });
-LineLoader.displayName = 'LineLoader';
