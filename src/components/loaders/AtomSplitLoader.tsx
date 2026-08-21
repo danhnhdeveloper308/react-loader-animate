@@ -9,11 +9,11 @@ export const AtomSplitLoader=memo(({size='md',variant='primary',color,visible=tr
       {orbits.map(({ra,sw},i)=>(
         <ellipse key={i} cx={s/2} cy={s/2} rx={s*0.44} ry={s*0.18} fill="none" stroke={c}
           strokeWidth={sw} opacity={0.85}
-          style={{['--ra' as string]:`${ra}deg`,transform:`rotate(${ra}deg)`,transformOrigin:`${s/2}px ${s/2}px`,
-            animation:`rla-asplit ${animationDuration}s ease-in-out ${i*(animationDuration/3)}s infinite`}}/>
+          style={{['--ra' as string]:`${ra}deg`,transform:`rotate(${ra}deg)`,transformBox:'view-box',transformOrigin:'center',willChange:'transform',
+            animation:`rla-asplit ${animationDuration}s cubic-bezier(.4,0,.2,1) ${-i*(animationDuration/3)}s infinite`}}/>
       ))}
       <circle cx={s/2} cy={s/2} r={s*0.1} fill={c}
-        style={{animation:`rla-acore ${animationDuration}s ease-in-out infinite`}}/>
+        style={{transformBox:'fill-box',transformOrigin:'center',willChange:'transform',animation:`rla-acore ${animationDuration}s cubic-bezier(.4,0,.2,1) infinite`}}/>
     </svg>
     <span className="sr-only">{ariaLabel}</span>
   </div>);

@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColorStyle, LOADER_SIZES } from './types';
 
-export const RadarLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const RadarLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '', animationDuration = 1.5 }: LoaderProps) => {
   if (!visible) return null;
   const colors = {
     primary: 'border-primary',
@@ -36,7 +36,7 @@ export const RadarLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'prima
         />
       ))}
       {/* Sweep line */}
-      <div className="absolute inset-0 animate-spin-slow" style={{ animationDuration: '1.5s' }}>
+      <div className="absolute inset-0 animate-spin-slow" style={{ animationDuration: `${animationDuration}s` }}>
         <div
           className={`absolute top-1/2 left-1/2 h-[2px] origin-left ${fills[variant]}`}
           style={{ width: '50%', transform: 'translateY(-50%)' }}

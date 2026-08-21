@@ -9,7 +9,7 @@ export const PuzzleLoader=memo(({size='md',variant='primary',color,visible=true,
       {pieces.map(({anim,t,l},i)=>(
         <div key={i} style={{position:'absolute',top:t+(s/2-qs-gap/2),left:l+(s/2-qs-gap/2),width:qs,height:qs,
           background:c,opacity:0.5+i*0.12,borderRadius:qs*0.15,
-          animation:`${anim} ${animationDuration}s ease-in-out ${i*0.1}s infinite`}}/>
+          willChange:'transform',animation:`${anim} ${animationDuration}s cubic-bezier(.4,0,.2,1) ${-i*animationDuration*0.035}s infinite`}}/>
       ))}
     </div>
     <span className="sr-only">{ariaLabel}</span>

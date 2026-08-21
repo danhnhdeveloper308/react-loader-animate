@@ -3,7 +3,7 @@ import { LoaderProps, resolveColorStyle } from './types';
 
 const SIZE_MAP = { sm: 'w-10 h-5', md: 'w-16 h-8', lg: 'w-20 h-10' };
 
-export const InfinityLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const InfinityLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '', animationDuration = 1.8 }: LoaderProps) => {
   if (!visible) return null;
   const stroke = {
     primary: 'stroke-primary',
@@ -19,7 +19,7 @@ export const InfinityLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'pr
           strokeWidth="4"
           strokeLinecap="round"
           d="M25,25 C25,10 10,10 10,25 C10,40 25,40 25,25 C25,10 40,10 50,25 C60,40 75,40 75,25 C75,10 90,10 90,25 C90,40 75,40 75,25 C75,10 60,10 50,25 C40,40 25,40 25,25"
-          style={{ strokeDasharray: 300, strokeDashoffset: 0 }}
+          style={{ strokeDasharray: 300, strokeDashoffset: 300, animationDuration: `${animationDuration}s` }}
         />
       </svg>
     </div>

@@ -8,7 +8,7 @@ export const VortexLoader=memo(({size='md',variant='primary',color,visible=true,
     <div style={{position:'relative',width:s,height:s}}>
       {Array.from({length:n},(_,i)=>{
         const ratio=(n-i)/n;const sz=s*ratio;const offset=(s-sz)/2;
-        return(<div key={i} style={{position:'absolute',left:offset,top:offset,width:sz,height:sz,borderRadius:'50%',border:`${1.5}px solid ${c}`,opacity:(i+1)/n,animation:`rla-vortex ${animationDuration*(1+i*0.15)}s linear ${i*0.1}s infinite`}}/>);
+        return(<div key={i} style={{position:'absolute',left:offset,top:offset,width:sz,height:sz,borderRadius:'50%',border:`${1.5}px solid ${c}`,borderRightColor:'transparent',borderBottomColor:'transparent',opacity:(i+1)/n,animation:`rla-vortex ${animationDuration*(1+i*0.15)}s cubic-bezier(.45,0,.55,1) ${i*0.1}s infinite`}}/>);
       })}
     </div>
     <span className="sr-only">{ariaLabel}</span>

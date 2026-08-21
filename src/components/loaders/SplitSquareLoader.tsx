@@ -7,7 +7,7 @@ export const SplitSquareLoader=memo(({size='md',variant='primary',color,visible=
   return(<div role="status" aria-label={ariaLabel} className={wrapperClass} style={wrapperStyle}>
     <div style={{position:'relative',width:s,height:s}}>
       {quads.map(({anim,style:st},i)=>(
-        <div key={i} style={{position:'absolute',width:qs,height:qs,background:c,opacity:0.6+i*0.1,borderRadius:2,...st,animation:`${anim} ${animationDuration}s ease-in-out infinite`}}/>
+        <div key={i} style={{position:'absolute',width:qs,height:qs,background:c,opacity:0.6+i*0.1,borderRadius:2,...st,willChange:'transform',animation:`${anim} ${animationDuration}s cubic-bezier(.4,0,.2,1) infinite`}}/>
       ))}
     </div>
     <span className="sr-only">{ariaLabel}</span>

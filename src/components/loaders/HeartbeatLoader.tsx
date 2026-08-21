@@ -3,7 +3,7 @@ import { LoaderProps, resolveColorStyle } from './types';
 
 const SIZE_MAP = { sm: 'w-6 h-6', md: 'w-10 h-10', lg: 'w-14 h-14' };
 
-export const HeartbeatLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const HeartbeatLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '', animationDuration = 1.1 }: LoaderProps) => {
   if (!visible) return null;
   const fill = {
     primary: 'fill-primary',
@@ -13,7 +13,7 @@ export const HeartbeatLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'p
   };
   return (
     <div role="status" aria-label={ariaLabel} className={wrapperClass} style={{ display: 'inline-flex', ...wrapperStyle, ...resolveColorStyle(variant, color) }}>
-      <svg className={`${SIZE_MAP[size]} animate-heartbeat`} viewBox="0 0 24 24">
+      <svg className={`${SIZE_MAP[size]} animate-heartbeat`} viewBox="0 0 24 24" style={{ animationDuration: `${animationDuration}s`, transformOrigin: 'center' }}>
         <path
           className={fill[variant]}
           d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"

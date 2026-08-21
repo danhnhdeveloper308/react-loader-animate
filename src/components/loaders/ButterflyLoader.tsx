@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColorStyle, LOADER_SIZES, LOADER_BG_VARIANTS } from './types';
 
-export const ButterflyLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const ButterflyLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '', animationDuration = 1.5 }: LoaderProps) => {
   if (!visible) return null;
   const bg = LOADER_BG_VARIANTS[variant];
   return (
@@ -9,7 +9,7 @@ export const ButterflyLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'p
       role="status"
       aria-label={ariaLabel}
       className={`${LOADER_SIZES[size]} relative flex items-center justify-center animate-butterfly-flap ${wrapperClass}`}
-      style={{ ...wrapperStyle, ...resolveColorStyle(variant, color) }}
+      style={{ ...wrapperStyle, ...resolveColorStyle(variant, color), animationDuration: `${animationDuration}s` }}
     >
       {/* Left wing */}
       <div className={`absolute left-0 w-[45%] h-[70%] ${bg} rounded-tl-full rounded-bl-full origin-right`} />

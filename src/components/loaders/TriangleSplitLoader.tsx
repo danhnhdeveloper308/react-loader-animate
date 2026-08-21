@@ -4,12 +4,12 @@ import { LoaderProps, resolveColorStyle, LOADER_SIZES, LOADER_BG_VARIANTS } from
 const TRIANGLE_CLIP = 'polygon(50% 0%, 0% 100%, 100% 100%)';
 
 const PIECES = [
-  { x: '0%', y: '-55%', delay: '0s' },
-  { x: '-45%', y: '40%', delay: '0.5s' },
-  { x: '45%', y: '40%', delay: '1s' },
+  { x: '0%', y: '-92%', phase: 0 },
+  { x: '-76%', y: '68%', phase: 0.035 },
+  { x: '76%', y: '68%', phase: 0.07 },
 ] as const;
 
-export const TriangleSplitLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const TriangleSplitLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '', animationDuration = 2 }: LoaderProps) => {
   if (!visible) return null;
   const bg = LOADER_BG_VARIANTS[variant];
   return (
@@ -31,7 +31,10 @@ export const TriangleSplitLoader = /* @__PURE__ */ memo(({ size = 'md', variant 
             clipPath: TRIANGLE_CLIP,
             '--split-x': piece.x,
             '--split-y': piece.y,
-            animationDelay: piece.delay,
+            animationDelay: `${-piece.phase * animationDuration}s`,
+            animationDuration: `${animationDuration}s`,
+            animationTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+            willChange: 'transform, opacity',
           } as React.CSSProperties}
         />
       ))}

@@ -72,9 +72,11 @@ export function resolveColorStyle(
   color?: string
 ): CSSProperties {
   const resolved = resolveColor(variant, color);
+  if (!color) return { color: resolved };
+
   return {
     color: resolved,
-    [`--${variant}`]: resolved,
+    [`--rla-${variant}`]: resolved,
   } as CSSProperties;
 }
 

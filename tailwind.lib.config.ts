@@ -23,19 +23,19 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
+          DEFAULT: 'var(--rla-primary, hsl(var(--primary)))',
           foreground: 'hsl(var(--primary-foreground))',
         },
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
+          DEFAULT: 'var(--rla-accent, hsl(var(--accent)))',
           foreground: 'hsl(var(--accent-foreground))',
         },
         success: {
-          DEFAULT: 'hsl(var(--success))',
+          DEFAULT: 'var(--rla-success, hsl(var(--success)))',
           foreground: 'hsl(var(--success-foreground))',
         },
         warning: {
-          DEFAULT: 'hsl(var(--warning))',
+          DEFAULT: 'var(--rla-warning, hsl(var(--warning)))',
           foreground: 'hsl(var(--warning-foreground))',
         },
       },
@@ -57,8 +57,9 @@ export default {
           '30%': { transform: 'translateY(-15px)' },
         },
         flip: {
-          '0%, 80%': { transform: 'rotateY(0deg)' },
-          '100%': { transform: 'rotateY(180deg)' },
+          '0%': { transform: 'perspective(80px) rotateX(0deg) rotateY(0deg) scale(1)' },
+          '45%': { transform: 'perspective(80px) rotateX(-180deg) rotateY(0deg) scale(0.82)' },
+          '90%, 100%': { transform: 'perspective(80px) rotateX(-180deg) rotateY(-180deg) scale(1)' },
         },
         swing: {
           '0%, 100%': { transform: 'rotate(15deg)' },
@@ -74,10 +75,10 @@ export default {
           '50%': { opacity: '1' },
         },
         'butterfly-flap': {
-          '0%, 100%': { transform: 'scaleX(1) rotate(0deg)' },
-          '25%': { transform: 'scaleX(0.3) rotate(10deg)' },
-          '50%': { transform: 'scaleX(1) rotate(0deg)' },
-          '75%': { transform: 'scaleX(0.3) rotate(-10deg)' },
+          '0%, 100%': { transform: 'translateY(2%) scaleX(1) rotate(-3deg)' },
+          '25%': { transform: 'translateY(-5%) scaleX(0.42) rotate(5deg)' },
+          '50%': { transform: 'translateY(2%) scaleX(1) rotate(3deg)' },
+          '75%': { transform: 'translateY(-5%) scaleX(0.42) rotate(-5deg)' },
         },
         'diamond-pulse': {
           '0%': { transform: 'rotate(45deg) scale(1)' },
@@ -87,28 +88,20 @@ export default {
           '100%': { transform: 'rotate(405deg) scale(1)' },
         },
         'split-out': {
-          '0%, 100%': {
-            transform: 'translate(-50%, -50%) scale(1)',
-            opacity: '0.3',
-          },
-          '10%': { opacity: '1' },
+          '0%, 100%': { transform: 'translate(-50%, -50%) scale(0.9)', opacity: '0.55' },
+          '18%, 82%': { opacity: '1' },
           '50%': {
-            transform: 'translate(calc(-50% + var(--split-x)), calc(-50% + var(--split-y))) scale(0.6)',
+            transform: 'translate(calc(-50% + var(--split-x)), calc(-50% + var(--split-y))) scale(0.78)',
             opacity: '1',
           },
-          '90%': { opacity: '1' },
         },
         'corner-split': {
-          '0%, 100%': {
-            transform: 'translate(-50%, -50%) scale(1)',
-            opacity: '0.3',
-          },
-          '10%': { opacity: '1' },
+          '0%, 100%': { transform: 'translate(-50%, -50%) scale(0.88) rotate(0deg)', opacity: '0.5' },
+          '18%, 82%': { opacity: '1' },
           '50%': {
-            transform: 'translate(calc(-50% + var(--corner-x)), calc(-50% + var(--corner-y))) scale(0.6)',
+            transform: 'translate(calc(-50% + var(--corner-x)), calc(-50% + var(--corner-y))) scale(0.78) rotate(90deg)',
             opacity: '1',
           },
-          '90%': { opacity: '1' },
         },
         'square-split': {
           '0%': {
@@ -153,11 +146,11 @@ export default {
           '50%': { transform: 'scale(1)', opacity: '1' },
         },
         heartbeat: {
-          '0%': { transform: 'scale(1)' },
-          '14%': { transform: 'scale(1.3)' },
-          '28%': { transform: 'scale(1)' },
-          '42%': { transform: 'scale(1.3)' },
-          '70%': { transform: 'scale(1)' },
+          '0%, 100%': { transform: 'scale(0.92)' },
+          '12%': { transform: 'scale(1.16)' },
+          '24%': { transform: 'scale(0.96)' },
+          '36%': { transform: 'scale(1.1)' },
+          '52%, 82%': { transform: 'scale(0.92)' },
         },
         'cube-face': {
           '0%': { transform: 'perspective(120px) rotateX(0deg) rotateY(0deg)' },
@@ -165,8 +158,9 @@ export default {
           '100%': { transform: 'perspective(120px) rotateX(-180deg) rotateY(-180deg)' },
         },
         'infinity-draw': {
-          '0%': { strokeDashoffset: '600' },
-          '100%': { strokeDashoffset: '0' },
+          '0%': { strokeDashoffset: '300', opacity: '0.35' },
+          '45%': { opacity: '1' },
+          '100%': { strokeDashoffset: '-300', opacity: '0.35' },
         },
         'hourglass-flip': {
           '0%': { transform: 'rotate(0deg)' },

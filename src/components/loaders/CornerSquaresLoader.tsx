@@ -2,13 +2,13 @@ import { memo } from 'react';
 import { LoaderProps, resolveColorStyle, LOADER_SIZES, LOADER_BG_VARIANTS } from './types';
 
 const CORNERS = [
-  { x: '-60%', y: '-60%', delay: '0s' },
-  { x: '60%', y: '-60%', delay: '0.5s' },
-  { x: '-60%', y: '60%', delay: '1s' },
-  { x: '60%', y: '60%', delay: '1.5s' },
+  { x: '-120%', y: '-120%', phase: 0 },
+  { x: '120%', y: '-120%', phase: 0.25 },
+  { x: '-120%', y: '120%', phase: 0.5 },
+  { x: '120%', y: '120%', phase: 0.75 },
 ] as const;
 
-export const CornerSquaresLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const CornerSquaresLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '', animationDuration = 2 }: LoaderProps) => {
   if (!visible) return null;
   const bg = LOADER_BG_VARIANTS[variant];
   return (
@@ -32,7 +32,10 @@ export const CornerSquaresLoader = /* @__PURE__ */ memo(({ size = 'md', variant 
             left: '50%',
             '--corner-x': corner.x,
             '--corner-y': corner.y,
-            animationDelay: corner.delay,
+            animationDelay: `${-corner.phase * animationDuration}s`,
+            animationDuration: `${animationDuration}s`,
+            animationTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+            willChange: 'transform, opacity',
           } as React.CSSProperties}
         />
       ))}

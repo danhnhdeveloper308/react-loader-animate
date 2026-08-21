@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { LoaderProps, resolveColorStyle } from './types';
 
-export const TypingDotsLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const TypingDotsLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '', animationDuration = 1.4 }: LoaderProps) => {
   if (!visible) return null;
   const fills = {
     primary: 'bg-primary',
@@ -24,7 +24,7 @@ export const TypingDotsLoader = /* @__PURE__ */ memo(({ size = 'md', variant = '
         <div
           key={i}
           className={`${sizes[size]} ${fills[variant]} rounded-full animate-[typing-bounce_1.4s_ease-in-out_infinite]`}
-          style={{ animationDelay: `${i * 0.2}s` }}
+          style={{ animationDelay: `${i * animationDuration * 0.14}s`, animationDuration: `${animationDuration}s` }}
         />
       ))}
     </div>

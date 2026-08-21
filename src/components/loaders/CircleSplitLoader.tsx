@@ -2,13 +2,13 @@ import { memo } from 'react';
 import { LoaderProps, resolveColorStyle, LOADER_SIZES, LOADER_BG_VARIANTS } from './types';
 
 const PIECES = [
-  { x: '0%', y: '-55%', delay: '0s' },
-  { x: '55%', y: '0%', delay: '0.4s' },
-  { x: '0%', y: '55%', delay: '0.8s' },
-  { x: '-55%', y: '0%', delay: '1.2s' },
+  { x: '0%', y: '-88%', phase: 0 },
+  { x: '88%', y: '0%', phase: 0.025 },
+  { x: '0%', y: '88%', phase: 0.05 },
+  { x: '-88%', y: '0%', phase: 0.075 },
 ] as const;
 
-export const CircleSplitLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '' }: LoaderProps) => {
+export const CircleSplitLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 'primary', color, visible = true, ariaLabel = 'loading', wrapperStyle, wrapperClass = '', animationDuration = 2 }: LoaderProps) => {
   if (!visible) return null;
   const bg = LOADER_BG_VARIANTS[variant];
   return (
@@ -29,7 +29,10 @@ export const CircleSplitLoader = /* @__PURE__ */ memo(({ size = 'md', variant = 
             left: '50%',
             '--split-x': piece.x,
             '--split-y': piece.y,
-            animationDelay: piece.delay,
+            animationDelay: `${-piece.phase * animationDuration}s`,
+            animationDuration: `${animationDuration}s`,
+            animationTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+            willChange: 'transform, opacity',
           } as React.CSSProperties}
         />
       ))}
