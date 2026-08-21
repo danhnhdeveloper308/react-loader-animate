@@ -1,3 +1,15 @@
+## [1.6.0](https://github.com/danhnhdeveloper308/react-loader-animate/compare/v1.5.0...v1.6.0) (2026-08-21)
+
+### Features
+
+* modernize loader catalog and package architecture ([337bf9d](https://github.com/danhnhdeveloper308/react-loader-animate/commit/337bf9d35fab89c9de6fead345d410dfa9f2d131))
+
+### Bug Fixes
+
+* preserve original semantic release errors ([4e57982](https://github.com/danhnhdeveloper308/react-loader-animate/commit/4e579827c75260dea11f1d49ee7b196126eba861))
+* restore loader visibility and smooth split animations ([6a940fa](https://github.com/danhnhdeveloper308/react-loader-animate/commit/6a940fadfb10ee44660f8fbc41a3b60db90a0d26))
+* support SSR across React 16 through 19 ([375b0bc](https://github.com/danhnhdeveloper308/react-loader-animate/commit/375b0bc7904a0fbbe84cd1b0af32a3c3c104eabd))
+
 ## [1.5.0](https://github.com/danhnhdeveloper308/react-loader-animate/compare/v1.4.0...v1.5.0) (2026-04-24)
 
 ### Features
